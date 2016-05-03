@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllColumn" xml:space="preserve">
+    <value>All Column</value>
+  </data>
+  <data name="AllTable" xml:space="preserve">
+    <value>All Tables</value>
+  </data>
+  <data name="CodeType" xml:space="preserve">
+    <value>CodeType</value>
+  </data>
+  <data name="ColumnId" xml:space="preserve">
+    <value>ColumnId</value>
+  </data>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Column Name</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ConnectDB" xml:space="preserve">
+    <value>Connect Database</value>
+  </data>
+  <data name="ConnectDBFaild" xml:space="preserve">
+    <value>Connect Database Failed</value>
+  </data>
+  <data name="ConnectionString" xml:space="preserve">
+    <value>ConnectionString</value>
+  </data>
+  <data name="DBType" xml:space="preserve">
+    <value>DBType</value>
+  </data>
+  <data name="DefaultValue" xml:space="preserve">
+    <value>DefaultValue</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Error_GetColumn" xml:space="preserve">
+    <value>Get Columns Failed</value>
+  </data>
+  <data name="Error_GetTable" xml:space="preserve">
+    <value>Get Tables Failed</value>
+  </data>
+  <data name="Error_NoConnectionString" xml:space="preserve">
+    <value>Required Connection String</value>
+  </data>
+  <data name="Error_NoDBInfoGetter" xml:space="preserve">
+    <value>Required Select DB Type</value>
+  </data>
+  <data name="Error_NoGenTable" xml:space="preserve">
+    <value>Select Table less than one</value>
+  </data>
+  <data name="Error_NoNamespace" xml:space="preserve">
+    <value>Required namespace</value>
+  </data>
+  <data name="Error_NoProjectName" xml:space="preserve">
+    <value>Required project name</value>
+  </data>
+  <data name="Error_NoSettingName" xml:space="preserve">
+    <value>Required setting name</value>
+  </data>
+  <data name="Error_NoTargetPath" xml:space="preserve">
+    <value>Required target path</value>
+  </data>
+  <data name="Error_NoTemplatePath" xml:space="preserve">
+    <value>Required template path</value>
+  </data>
+  <data name="Error_NullCodeGetter" xml:space="preserve">
+    <value>Required Select Code Type</value>
+  </data>
+  <data name="Error_NullDBGetter" xml:space="preserve">
+    <value>Error_NullDBGetter</value>
+  </data>
+  <data name="Error_NullProjectInfo" xml:space="preserve">
+    <value>Error_NullProjectInfo</value>
+  </data>
+  <data name="Error_OpenDB" xml:space="preserve">
+    <value>Error_OpenDB</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="FKColumnName" xml:space="preserve">
+    <value>FK Column</value>
+  </data>
+  <data name="FKName" xml:space="preserve">
+    <value>FK Name</value>
+  </data>
+  <data name="FKTableName" xml:space="preserve">
+    <value>FK Table</value>
+  </data>
+  <data name="GenFaild" xml:space="preserve">
+    <value>Generate Code Faild</value>
+  </data>
+  <data name="GenProgress" xml:space="preserve">
+    <value>Generating</value>
+  </data>
+  <data name="GenSucc" xml:space="preserve">
+    <value>Generate Code Successfully</value>
+  </data>
+  <data name="GenTargetPath" xml:space="preserve">
+    <value>GenTargetPath</value>
+  </data>
+  <data name="InfoTitle" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="IsAutoNum" xml:space="preserve">
+    <value>IsAutoNum</value>
+  </data>
+  <data name="IsClearTarget" xml:space="preserve">
+    <value>IsClearTarget</value>
+  </data>
+  <data name="IsFK" xml:space="preserve">
+    <value>IsFK</value>
+  </data>
+  <data name="IsGen" xml:space="preserve">
+    <value>IsGen</value>
+  </data>
+  <data name="IsGenUI" xml:space="preserve">
+    <value>IsGenUI</value>
+  </data>
+  <data name="IsInput" xml:space="preserve">
+    <value>IsInput</value>
+  </data>
+  <data name="IsNullable" xml:space="preserve">
+    <value>IsNullable</value>
+  </data>
+  <data name="IsPK" xml:space="preserve">
+    <value>IsPK</value>
+  </data>
+  <data name="IsSearchCondition" xml:space="preserve">
+    <value>Gen Search Condition</value>
+  </data>
+  <data name="IsSearchResult" xml:space="preserve">
+    <value>Gen Search Result</value>
+  </data>
+  <data name="IsUnique" xml:space="preserve">
+    <value>IsUnique</value>
+  </data>
+  <data name="MaxLength" xml:space="preserve">
+    <value>MaxLength</value>
+  </data>
+  <data name="MaxValue" xml:space="preserve">
+    <value>Max Value</value>
+  </data>
+  <data name="MinValue" xml:space="preserve">
+    <value>Min Value</value>
+  </data>
+  <data name="Namespace" xml:space="preserve">
+    <value>Namespace</value>
+  </data>
+  <data name="Precision" xml:space="preserve">
+    <value>Precision</value>
+  </data>
+  <data name="ProjectDisplayName" xml:space="preserve">
+    <value>ProjectDisplayName</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>ProjectName</value>
+  </data>
+  <data name="ReferenceFolder" xml:space="preserve">
+    <value>ReferenceFolder</value>
+  </data>
+  <data name="SavedSettings" xml:space="preserve">
+    <value>SavedSettings</value>
+  </data>
+  <data name="SaveGenSetting" xml:space="preserve">
+    <value>Save Setting</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="SettingName" xml:space="preserve">
+    <value>Setting Name</value>
+  </data>
+  <data name="SettingSaveFaild" xml:space="preserve">
+    <value>Setting Save Faild</value>
+  </data>
+  <data name="SettingSaveSucc" xml:space="preserve">
+    <value>Setting Save Successfully</value>
+  </data>
+  <data name="SqlType" xml:space="preserve">
+    <value>SQL Type</value>
+  </data>
+  <data name="StartGen" xml:space="preserve">
+    <value>Start Generate</value>
+  </data>
+  <data name="TableName" xml:space="preserve">
+    <value>Table Name</value>
+  </data>
+  <data name="TemplatePath" xml:space="preserve">
+    <value>TemplatePath</value>
+  </data>
+  <data name="ViewFolder" xml:space="preserve">
+    <value>ViewFolder</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+</root>

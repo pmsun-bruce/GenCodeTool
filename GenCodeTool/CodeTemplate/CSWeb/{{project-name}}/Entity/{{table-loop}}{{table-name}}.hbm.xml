@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="{{project:namespace}}">
+	<class name="{{project:namespace}}.Entity.{{table:name}}" table="{{table:name}}">
+        {{if:table:cpk}}
+        <composite-id >
+            {{loop:pk}}
+            <key-property
+                name="{{pk:col:name}}"
+                column="{{pk:col:name}}"
+                type="{{pk:col:codetype}}"
+                {{if:col:maxlen}}length="{{pk:col:maxlen}}"{{/if:col:maxlen}} 
+            />{{/loop:pk}}
+        </composite-id>{{/if:table:cpk}}{{if:table:spk}}
+        <id name="{{pk:col:name}}" column="{{pk:col:name}}" type="{{pk:col:codetype}}">
+			<generator class="uuid.hex"/>
+		</id>{{/if:table:spk}}
+        {{loop:col}}
+        <property column="{{col:name}}" type="{{col:codetype}}" name="{{col:name}}" {{if:col:required}}not-null="true"{{/if:col:required}} {{if:col:maxlen}}length="{{col:maxlen}}"{{/if:col:maxlen}} />{{/loop:col}}
+{{loop:fk}}
+        <many-to-one name="Curr{{fk:table:name}}" column="{{fk:pk:col:name}}" class="{{project:namespace}}.Entity.{{fk:table:name}}" cascade="none" />{{/loop:fk}}{{rlast}}\n\n{{/rlast}}
+{{loop:rk}}
+        <set name="{{rk:table:name}}List" inverse="true" lazy="true" >
+            <key column="{{rk:pk:col:name}}" foreign-key="{{rk:fk:col:fkname}}"/>
+            <one-to-many class="{{project:namespace}}.Entity.{{rk:table:name}}" />
+        </set>{{/loop:rk}}{{rlast}}\n\n{{/rlast}}
+    </class>
+</hibernate-mapping>
