@@ -62,8 +62,10 @@
             colQuery.AppendLine(@"  t.nullable, ");
             colQuery.AppendLine(@"  t.column_id, ");
             colQuery.AppendLine(@"  c.comments, ");
-            colQuery.AppendLine(@"  t.DATA_PRECISION, ");
-            colQuery.AppendLine(@"  t.DATA_SCALE, ");
+            colQuery.AppendLine(@"  t.data_precision, ");
+            colQuery.AppendLine(@"  t.data_scale, ");
+            colQuery.AppendLine(@"  t.data_default, ");
+            colQuery.AppendLine(@"  (SELECT CASE WHEN n.column_name is not null AND n.constraint_type = 'U' THEN 'true' ELSE 'false' END FROM DUAL) isunique, ");
             colQuery.AppendLine(@"  (SELECT CASE WHEN n.column_name is not null AND n.constraint_type = 'P' THEN 'true' ELSE 'false' END FROM DUAL) ispk, ");
             colQuery.AppendLine(@"  (SELECT CASE WHEN n.column_name is not null AND n.constraint_type = 'R' THEN 'true' ELSE 'false' END FROM DUAL) isfk, ");
             colQuery.AppendLine(@"  n.fk_name, ");
@@ -91,11 +93,11 @@
             colQuery.AppendLine(@"   LEFT JOIN ");
             colQuery.AppendLine(@"     user_constraints con2 ON(col2.table_name = con2.table_name AND con2.constraint_name = con1.r_constraint_name) ");
             colQuery.AppendLine(@"   WHERE ");
-            colQuery.AppendLine(@"       LOWER(col1.table_name)='m_cust_edit_detail' ");
+            colQuery.AppendLine(@"        ");
             colQuery.AppendLine(@"     AND ");
-            colQuery.AppendLine(@"       con1.constraint_type != 'C') n ON (n.column_name = t.column_name) ");
+            colQuery.AppendLine(@"       con1.constraint_type != 'C') n ON (n.column_name = t.column_name and LOWER(col1.table_name)=LOWER(t.table_name)) ");
             colQuery.AppendLine(@"WHERE ");
-            colQuery.AppendLine(@"    LOWER(t.table_name)='" + tableInfo.Name + @"' ");
+            colQuery.AppendLine(@"    LOWER(t.table_name)='" + tableInfo.NameLow + @"' ");
             colQuery.AppendLine(@"  AND ");
             colQuery.AppendLine(@"    t.hidden_column='NO' ");
             colQuery.AppendLine(@"ORDER BY ");
@@ -121,14 +123,16 @@
                     colInfo.Comment = dataReader[6].ToString();
                     colInfo.Precision = !int.TryParse(dataReader[7].ToString(), out tmpInt) ? 0 : tmpInt;
                     colInfo.Scale = !int.TryParse(dataReader[8].ToString(), out tmpInt) ? 0 : tmpInt;
-                    colInfo.IsPK = bool.Parse(dataReader[9].ToString());
-                    colInfo.IsFK = bool.Parse(dataReader[10].ToString());
+                    colInfo.DefaultValue = dataReader[9].ToString();
+                    colInfo.IsUnique = bool.Parse(dataReader[10].ToString());
+                    colInfo.IsPK = bool.Parse(dataReader[11].ToString());
+                    colInfo.IsFK = bool.Parse(dataReader[12].ToString());
 
                     if (colInfo.IsFK)
                     {
-                        colInfo.FKName = dataReader[11].ToString();
-                        colInfo.FKColumnName = dataReader[12].ToString();
-                        colInfo.FKTableName = dataReader[13].ToString();
+                        colInfo.FKName = dataReader[13].ToString();
+                        colInfo.FKColumnName = dataReader[14].ToString();
+                        colInfo.FKTableName = dataReader[15].ToString();
                     }
 
                     colInfo.DbType = ToDbType(colInfo.SqlType, colInfo.Precision, colInfo.Scale);

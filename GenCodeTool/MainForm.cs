@@ -90,8 +90,10 @@ namespace NFramework.GenCodeTool
 
             if (GenCodeHandler.GenSettingPool.Count(s => this.GenSettingNameTxt.Text.Equals(s.SettingName)) > 0)
             {
-                MessageBox.Show(GenCodeToolResource.Error_NoSettingName, GenCodeToolResource.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (MessageBox.Show(GenCodeToolResource.Error_SameSettingName, GenCodeToolResource.ErrorTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.No)
+                {
+                    return;
+                }
             }
 
             if (!string.IsNullOrEmpty(errMsg))

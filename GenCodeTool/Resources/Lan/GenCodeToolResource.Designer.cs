@@ -286,6 +286,15 @@ namespace NFramework.GenCodeTool.Resources.Lan {
         }
         
         /// <summary>
+        ///   查找类似 Error_SameSettingName 的本地化字符串。
+        /// </summary>
+        public static string Error_SameSettingName {
+            get {
+                return ResourceManager.GetString("Error_SameSettingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Error 的本地化字符串。
         /// </summary>
         public static string ErrorTitle {

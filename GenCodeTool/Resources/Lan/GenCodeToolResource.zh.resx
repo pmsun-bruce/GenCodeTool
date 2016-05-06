@@ -118,136 +118,179 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllColumn" xml:space="preserve">
-    <value>All Column</value>
+    <value>表字段</value>
+    <comment>表字段</comment>
   </data>
   <data name="AllTable" xml:space="preserve">
-    <value>All Tables</value>
+    <value>表</value>
+    <comment>表</comment>
   </data>
   <data name="CodeType" xml:space="preserve">
-    <value>CodeType</value>
+    <value>程序数据类型</value>
+    <comment>程序数据类型</comment>
   </data>
   <data name="ColumnId" xml:space="preserve">
-    <value>ColumnId</value>
+    <value>字段编号</value>
+    <comment>字段编号</comment>
   </data>
   <data name="ColumnName" xml:space="preserve">
-    <value>Column Name</value>
+    <value>字段名称</value>
+    <comment>字段名称</comment>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>Comment</value>
+    <value>备注</value>
+    <comment>备注</comment>
   </data>
   <data name="ConnectDB" xml:space="preserve">
-    <value>Connect Database</value>
+    <value>连接数据库</value>
+    <comment>连接数据库</comment>
   </data>
   <data name="ConnectDBFaild" xml:space="preserve">
-    <value>Connect Database Failed</value>
+    <value>连接数据库失败</value>
+    <comment>连接数据库失败</comment>
   </data>
   <data name="ConnectionString" xml:space="preserve">
-    <value>ConnectionString</value>
+    <value>数据库连接字符串</value>
+    <comment>数据库连接字符串</comment>
   </data>
   <data name="DBType" xml:space="preserve">
-    <value>DBType</value>
+    <value>数据库数据类型</value>
+    <comment>数据库数据类型</comment>
   </data>
   <data name="DefaultValue" xml:space="preserve">
-    <value>DefaultValue</value>
+    <value>默认值</value>
+    <comment>默认值</comment>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Error</value>
+    <value>错误</value>
+    <comment>错误</comment>
   </data>
   <data name="Error_GetColumn" xml:space="preserve">
-    <value>Get Columns Failed</value>
+    <value>加载表 {0} 的字段出错</value>
+    <comment>加载表 {0} 的字段出错</comment>
   </data>
   <data name="Error_GetTable" xml:space="preserve">
-    <value>Get Tables Failed</value>
+    <value>加载数据库表出错</value>
+    <comment>加载数据库表出错</comment>
   </data>
   <data name="Error_NoConnectionString" xml:space="preserve">
-    <value>Required Connection String</value>
+    <value>必须填写数据库连接字符串</value>
+    <comment>必须填写数据库连接字符串</comment>
   </data>
   <data name="Error_NoDBInfoGetter" xml:space="preserve">
-    <value>Required Select DB Type</value>
+    <value>必须选择一项数据库信息采集器</value>
+    <comment>必须选择一项数据库信息采集器</comment>
   </data>
   <data name="Error_NoGenTable" xml:space="preserve">
-    <value>Select Table less than one</value>
+    <value>至少选择一张需要生成的表</value>
+    <comment>至少选择一张需要生成的表</comment>
   </data>
   <data name="Error_NoNamespace" xml:space="preserve">
-    <value>Required namespace</value>
+    <value>必须填写命名空间</value>
+    <comment>必须填写命名空间</comment>
   </data>
   <data name="Error_NoProjectName" xml:space="preserve">
-    <value>Required project name</value>
+    <value>必须填写项目名称</value>
+    <comment>必须填写项目名称</comment>
   </data>
   <data name="Error_NoSettingName" xml:space="preserve">
-    <value>Required setting name</value>
+    <value>必须填写配置名称</value>
+    <comment>必须填写配置名称</comment>
   </data>
   <data name="Error_NoTargetPath" xml:space="preserve">
-    <value>Required target path</value>
+    <value>必须填写生成的目标路径</value>
+    <comment>必须填写生成的目标路径</comment>
   </data>
   <data name="Error_NoTemplatePath" xml:space="preserve">
-    <value>Required template path</value>
+    <value>必须选择一项生成模板</value>
+    <comment>必须选择一项生成模板</comment>
   </data>
   <data name="Error_NullCodeGetter" xml:space="preserve">
-    <value>Required Select Code Type</value>
+    <value>没有选择一项程序信息采集器</value>
+    <comment>没有选择一项程序信息采集器</comment>
   </data>
   <data name="Error_NullDBGetter" xml:space="preserve">
-    <value>Error_NullDBGetter</value>
+    <value>没有选择一项数据库信息采集器</value>
+    <comment>没有选择一项数据库信息采集器</comment>
   </data>
   <data name="Error_NullProjectInfo" xml:space="preserve">
-    <value>Error_NullProjectInfo</value>
+    <value>没有项目信息</value>
+    <comment>没有项目信息</comment>
   </data>
   <data name="Error_OpenDB" xml:space="preserve">
-    <value>Error_OpenDB</value>
+    <value>打开数据库连接错误</value>
+    <comment>打开数据库连接错误</comment>
   </data>
   <data name="Finish" xml:space="preserve">
-    <value>Finish</value>
+    <value>完成</value>
+    <comment>完成</comment>
   </data>
   <data name="FKColumnName" xml:space="preserve">
-    <value>FK Column</value>
+    <value>外键关联字段名称</value>
+    <comment>外键关联字段名称</comment>
   </data>
   <data name="FKName" xml:space="preserve">
-    <value>FK Name</value>
+    <value>外键约束名称</value>
+    <comment>外键约束名称</comment>
   </data>
   <data name="FKTableName" xml:space="preserve">
-    <value>FK Table</value>
+    <value>外键关联表名称</value>
+    <comment>外键关联表名称</comment>
   </data>
   <data name="GenFaild" xml:space="preserve">
-    <value>Generate Code Faild</value>
+    <value>代码生成失败</value>
+    <comment>代码生成失败</comment>
   </data>
   <data name="GenProgress" xml:space="preserve">
-    <value>Generating</value>
+    <value>代码生成中</value>
+    <comment>代码生成中</comment>
   </data>
   <data name="GenSucc" xml:space="preserve">
-    <value>Generate Code Successfully</value>
+    <value>代码生成成功</value>
+    <comment>代码生成成功</comment>
   </data>
   <data name="GenTargetPath" xml:space="preserve">
-    <value>GenTargetPath</value>
+    <value>目标生成路径</value>
+    <comment>目标生成路径</comment>
   </data>
   <data name="InfoTitle" xml:space="preserve">
-    <value>Information</value>
+    <value>提示</value>
+    <comment>提示</comment>
   </data>
   <data name="IsAutoNum" xml:space="preserve">
-    <value>IsAutoNum</value>
+    <value>自动编号</value>
+    <comment>自动编号</comment>
   </data>
   <data name="IsClearTarget" xml:space="preserve">
-    <value>IsClearTarget</value>
+    <value>是否生成前清空目标目录</value>
+    <comment>是否生成前清空目标目录</comment>
   </data>
   <data name="IsFK" xml:space="preserve">
-    <value>IsFK</value>
+    <value>是否外键</value>
+    <comment>是否外键</comment>
   </data>
   <data name="IsGen" xml:space="preserve">
-    <value>IsGen</value>
+    <value>是否生成</value>
+    <comment>是否生成</comment>
   </data>
   <data name="IsGenUI" xml:space="preserve">
-    <value>IsGenUI</value>
+    <value>是否生成画面</value>
+    <comment>是否生成画面</comment>
   </data>
   <data name="IsInput" xml:space="preserve">
-    <value>IsInput</value>
+    <value>是否生成输入</value>
+    <comment>是否生成输入</comment>
   </data>
   <data name="IsNullable" xml:space="preserve">
-    <value>IsNullable</value>
+    <value>是否为空</value>
+    <comment>是否为空</comment>
   </data>
   <data name="IsPK" xml:space="preserve">
-    <value>IsPK</value>
+    <value>是否主键</value>
+    <comment>是否主键</comment>
   </data>
   <data name="IsSearchCondition" xml:space="preserve">
-    <value>Gen Search Condition</value>
+    <value>是否</value>
   </data>
   <data name="IsSearchResult" xml:space="preserve">
     <value>Gen Search Result</value>
@@ -316,6 +359,7 @@
     <value>Warning</value>
   </data>
   <data name="Error_SameSettingName" xml:space="preserve">
-    <value>Error_SameSettingName</value>
+    <value>存在同名的配置文件，是否覆盖已有的？</value>
+    <comment>存在同名的配置文件，是否覆盖已有的？</comment>
   </data>
 </root>

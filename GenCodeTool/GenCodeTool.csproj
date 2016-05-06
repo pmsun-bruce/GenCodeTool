@@ -36,7 +36,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>R:\ThirdLib\log4net.dll</HintPath>
+      <HintPath>..\..\..\..\ReferenceLib\ThirdLib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.ExceptionTool, Version=1.0.0.1, Culture=neutral, PublicKeyToken=d0e6a321f493372a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.ExceptionTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.ObjectTool, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d0e6a321f493372a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.ObjectTool.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,7 +62,6 @@
     <Compile Include="CodeInfoGetter\CSCodeInfoGetter.cs" />
     <Compile Include="CodeInfoGetter\CSCodeType.cs" />
     <Compile Include="CodeInfoGetter\ICodeInfoGetter.cs" />
-    <Compile Include="DBInfoGetter\DbInfoReader.cs" />
     <Compile Include="DBInfoGetter\OracleSqlType.cs" />
     <Compile Include="Entity\GenSetting.cs" />
     <Compile Include="Resources\Lan\GenCodeToolResource.Designer.cs">
@@ -181,6 +188,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GenCodeToolResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lan\GenCodeToolResource.zh.resx" />
     <None Include="app.config" />
     <None Include="Properties\DataSources\NFramework.GenCodeTool.CodeInfoGetter.ICodeInfoGetter.datasource" />
     <None Include="Properties\DataSources\NFramework.GenCodeTool.DBInfoGetter.IDBInfoGetter.datasource" />
@@ -208,16 +216,6 @@
     <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-name}}\" />
     <Folder Include="CodeTemplate\CSWinForm\" />
     <Folder Include="Resources\Config\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ExceptionTool\ExceptionTool.csproj">
-      <Project>{3ffb9c31-c91c-4774-8dbf-d8d764bee057}</Project>
-      <Name>ExceptionTool</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ObjectTool\ObjectTool.csproj">
-      <Project>{9e36cc84-750e-40df-961c-e205340db4c2}</Project>
-      <Name>ObjectTool</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

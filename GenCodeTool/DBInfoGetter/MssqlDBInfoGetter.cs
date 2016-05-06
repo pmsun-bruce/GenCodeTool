@@ -54,14 +54,33 @@
 
             StringBuilder colQuery = new StringBuilder();
             colQuery.AppendLine(@"SELECT ");
-            colQuery.AppendLine(@"    A.colid, ");
-            colQuery.AppendLine(@"    A.colorder,");
+            colQuery.AppendLine(@"    A.colorder, ");
             colQuery.AppendLine(@"    A.name AS columnname, ");
-            colQuery.AppendLine(@"    D.value AS comment,");
             colQuery.AppendLine(@"    B.name AS typename, ");
             colQuery.AppendLine(@"    A.length, ");
-            colQuery.AppendLine(@"    G.text AS initialvalue,");
             colQuery.AppendLine(@"    A.isnullable,");
+            colQuery.AppendLine(@"    A.colid, ");
+            colQuery.AppendLine(@"    D.value AS comment,");
+            colQuery.AppendLine(@"    A.prec,");
+            colQuery.AppendLine(@"    A.scale,");
+            colQuery.AppendLine(@"    G.text AS initialvalue,");
+            colQuery.AppendLine(@"    isunique = CASE WHEN EXISTS(SELECT ");
+            colQuery.AppendLine(@"                                    1 ");
+            colQuery.AppendLine(@"                                FROM ");
+            colQuery.AppendLine(@"                                    sys.indexes U1 ");
+            colQuery.AppendLine(@"                                LEFT JOIN ");
+            colQuery.AppendLine(@"                                    sys.index_columns U2 ON(U1.object_id = U2.object_id AND U1.index_id = u2.index_id) ");
+            colQuery.AppendLine(@"                                WHERE ");
+            colQuery.AppendLine(@"                                    U1.object_id = A.id ");
+            colQuery.AppendLine(@"                                AND ");
+            colQuery.AppendLine(@"                                    U2.column_id = A.colid ");
+            colQuery.AppendLine(@"                                AND ");
+            colQuery.AppendLine(@"                                    U1.is_unique = 1) ");
+            colQuery.AppendLine(@"               THEN ");
+            colQuery.AppendLine(@"                1 ");
+            colQuery.AppendLine(@"               ELSE ");
+            colQuery.AppendLine(@"                0 ");
+            colQuery.AppendLine(@"               END,");
             colQuery.AppendLine(@"    ispkey = CASE WHEN EXISTS(SELECT ");
             colQuery.AppendLine(@"                                1 ");
             colQuery.AppendLine(@"                              FROM ");
@@ -89,23 +108,10 @@
             colQuery.AppendLine(@"             ELSE ");
             colQuery.AppendLine(@"                0 ");
             colQuery.AppendLine(@"             END,");
-            colQuery.AppendLine(@"    isunique = CASE WHEN EXISTS(SELECT ");
-            colQuery.AppendLine(@"                                    1 ");
-            colQuery.AppendLine(@"                                FROM ");
-            colQuery.AppendLine(@"                                    sys.indexes U1 ");
-            colQuery.AppendLine(@"                                LEFT JOIN ");
-            colQuery.AppendLine(@"                                    sys.index_columns U2 ON(U1.object_id = U2.object_id AND U1.index_id = u2.index_id) ");
-            colQuery.AppendLine(@"                                WHERE ");
-            colQuery.AppendLine(@"                                    U1.object_id = A.id ");
-            colQuery.AppendLine(@"                                AND ");
-            colQuery.AppendLine(@"                                    U2.column_id = A.colid) ");
-            colQuery.AppendLine(@"               THEN ");
-            colQuery.AppendLine(@"                1 ");
-            colQuery.AppendLine(@"               ELSE ");
-            colQuery.AppendLine(@"                0 ");
-            colQuery.AppendLine(@"               END,");
             colQuery.AppendLine(@"    isfkey = CASE WHEN E.fkey IS NOT NULL THEN 1 ELSE 0 END,");
-            colQuery.AppendLine(@"    F.name AS mtable");
+            colQuery.AppendLine(@"    I.name AS fkname,");
+            colQuery.AppendLine(@"    H.name AS fkcolumn,");
+            colQuery.AppendLine(@"    F.name AS fktable");
             colQuery.AppendLine(@"FROM ");
             colQuery.AppendLine(@"    syscolumns A ");
             colQuery.AppendLine(@"LEFT JOIN ");
@@ -119,7 +125,11 @@
             colQuery.AppendLine(@"LEFT JOIN ");
             colQuery.AppendLine(@"    sysobjects F ON(E.rkeyid = F.id) ");
             colQuery.AppendLine(@"LEFT JOIN ");
-            colQuery.AppendLine(@"    syscomments G ON(A.cdefault = G.id)");
+            colQuery.AppendLine(@"    syscomments G ON(A.cdefault = G.id) ");
+            colQuery.AppendLine(@"LEFT JOIN ");
+            colQuery.AppendLine(@"    syscolumns H ON(E.rkeyid = H.id and E.rkey = H.colid) ");
+            colQuery.AppendLine(@"LEFT JOIN ");
+            colQuery.AppendLine(@"    sysobjects I ON(I.id = E.constid) ");
             colQuery.AppendLine(@"WHERE ");
             colQuery.AppendLine(@"    A.id = (SELECT ");
             colQuery.AppendLine(@"                id ");
@@ -139,6 +149,7 @@
 
             try
             {
+                command.Parameters.Add(new SqlParameter("@TableName", tableInfo.Name));
                 dataReader = command.ExecuteReader();
 
                 while (dataReader.Read())
@@ -147,19 +158,21 @@
                     colInfo.Name = dataReader[1].ToString();
                     colInfo.SqlType = dataReader[2].ToString().ToLower();
                     colInfo.MaxLength = !int.TryParse(dataReader[3].ToString(), out tmpInt) ? 0 : tmpInt;
-                    colInfo.IsNullable = "Y".Equals(dataReader[4].ToString()) ? true : false;
+                    colInfo.IsNullable = "1".Equals(dataReader[4].ToString()) ? true : false;
                     colInfo.ColId = int.Parse(dataReader[5].ToString());
                     colInfo.Comment = dataReader[6].ToString();
                     colInfo.Precision = !int.TryParse(dataReader[7].ToString(), out tmpInt) ? 0 : tmpInt;
                     colInfo.Scale = !int.TryParse(dataReader[8].ToString(), out tmpInt) ? 0 : tmpInt;
-                    colInfo.IsPK = bool.Parse(dataReader[9].ToString());
-                    colInfo.IsFK = bool.Parse(dataReader[10].ToString());
+                    colInfo.DefaultValue = dataReader[9].ToString();
+                    colInfo.IsUnique = "1".Equals(dataReader[10].ToString()) ? true : false;
+                    colInfo.IsPK = "1".Equals(dataReader[11].ToString()) ? true : false;
+                    colInfo.IsFK = "1".Equals(dataReader[12].ToString()) ? true : false;
 
                     if (colInfo.IsFK)
                     {
-                        colInfo.FKName = dataReader[11].ToString();
-                        colInfo.FKColumnName = dataReader[12].ToString();
-                        colInfo.FKTableName = dataReader[13].ToString();
+                        colInfo.FKName = dataReader[13].ToString();
+                        colInfo.FKColumnName = dataReader[14].ToString();
+                        colInfo.FKTableName = dataReader[15].ToString();
                     }
 
                     colInfo.DbType = ToDbType(colInfo.SqlType, colInfo.Precision, colInfo.Scale);
@@ -227,7 +240,7 @@
             tblQuery.AppendLine(@"WHERE ");
             tblQuery.AppendLine(@"    type='U' ");
             tblQuery.AppendLine(@"  AND ");
-            tblQuery.AppendLine(@"    A.name='" + tableName + "' ");
+            tblQuery.AppendLine(@"    A.name=@TableName ");
             tblQuery.AppendLine(@"ORDER BY ");
             tblQuery.AppendLine(@"    name ASC");
 
@@ -236,6 +249,7 @@
 
             try
             {
+                command.Parameters.Add(new SqlParameter("@TableName", tableName));
                 dataReader = command.ExecuteReader();
 
                 while (dataReader.Read())
