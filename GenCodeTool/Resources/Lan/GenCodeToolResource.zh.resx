@@ -290,73 +290,96 @@
     <comment>是否主键</comment>
   </data>
   <data name="IsSearchCondition" xml:space="preserve">
-    <value>是否</value>
+    <value>是否作为画面查询条件</value>
+    <comment>是否作为画面查询条件</comment>
   </data>
   <data name="IsSearchResult" xml:space="preserve">
-    <value>Gen Search Result</value>
+    <value>是否作为画面查询结果</value>
+    <comment>是否作为画面查询结果</comment>
   </data>
   <data name="IsUnique" xml:space="preserve">
-    <value>IsUnique</value>
+    <value>是否唯一项</value>
+    <comment>是否唯一项</comment>
   </data>
   <data name="MaxLength" xml:space="preserve">
-    <value>MaxLength</value>
+    <value>最大长度</value>
+    <comment>最大长度</comment>
   </data>
   <data name="MaxValue" xml:space="preserve">
-    <value>Max Value</value>
+    <value>最大值</value>
+    <comment>最大值</comment>
   </data>
   <data name="MinValue" xml:space="preserve">
-    <value>Min Value</value>
+    <value>最小值</value>
+    <comment>最小值</comment>
   </data>
   <data name="Namespace" xml:space="preserve">
-    <value>Namespace</value>
+    <value>命名空间</value>
+    <comment>命名空间</comment>
   </data>
   <data name="Precision" xml:space="preserve">
-    <value>Precision</value>
+    <value>有效位数</value>
+    <comment>有效位数</comment>
   </data>
   <data name="ProjectDisplayName" xml:space="preserve">
-    <value>ProjectDisplayName</value>
+    <value>项目备注</value>
+    <comment>项目备注</comment>
   </data>
   <data name="ProjectName" xml:space="preserve">
-    <value>ProjectName</value>
+    <value>项目名称</value>
+    <comment>项目名称</comment>
   </data>
   <data name="ReferenceFolder" xml:space="preserve">
-    <value>ReferenceFolder</value>
+    <value>引用目录</value>
+    <comment>引用目录</comment>
   </data>
   <data name="SavedSettings" xml:space="preserve">
-    <value>SavedSettings</value>
+    <value>已有配置</value>
+    <comment>已有配置</comment>
   </data>
   <data name="SaveGenSetting" xml:space="preserve">
-    <value>Save Setting</value>
+    <value>保存配置</value>
+    <comment>保存配置</comment>
   </data>
   <data name="Scale" xml:space="preserve">
-    <value>Scale</value>
+    <value>有效小数位</value>
+    <comment>有效小数位</comment>
   </data>
   <data name="SettingName" xml:space="preserve">
-    <value>Setting Name</value>
+    <value>配置名称</value>
+    <comment>配置名称</comment>
   </data>
   <data name="SettingSaveFaild" xml:space="preserve">
-    <value>Setting Save Faild</value>
+    <value>保存配置错误</value>
+    <comment>保存配置错误</comment>
   </data>
   <data name="SettingSaveSucc" xml:space="preserve">
-    <value>Setting Save Successfully</value>
+    <value>保存配置成功</value>
+    <comment>保存配置成功</comment>
   </data>
   <data name="SqlType" xml:space="preserve">
-    <value>SQL Type</value>
+    <value>数据库数据类型</value>
+    <comment>数据库数据类型</comment>
   </data>
   <data name="StartGen" xml:space="preserve">
-    <value>Start Generate</value>
+    <value>开始生成</value>
+    <comment>开始生成</comment>
   </data>
   <data name="TableName" xml:space="preserve">
-    <value>Table Name</value>
+    <value>表名</value>
+    <comment>表名</comment>
   </data>
   <data name="TemplatePath" xml:space="preserve">
-    <value>TemplatePath</value>
+    <value>模板路径</value>
+    <comment>模板路径</comment>
   </data>
   <data name="ViewFolder" xml:space="preserve">
-    <value>ViewFolder</value>
+    <value>浏览</value>
+    <comment>浏览</comment>
   </data>
   <data name="WarningTitle" xml:space="preserve">
-    <value>Warning</value>
+    <value>警告</value>
+    <comment>警告</comment>
   </data>
   <data name="Error_SameSettingName" xml:space="preserve">
     <value>存在同名的配置文件，是否覆盖已有的？</value>
