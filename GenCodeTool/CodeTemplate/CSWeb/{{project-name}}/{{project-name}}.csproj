@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9FC827A5-2C33-4704-A045-482F050A201C}</ProjectGuid>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE4A8175-E694-4D52-B922-806E353FA078}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>{{project:namespace}}</RootNamespace>
     <AssemblyName>{{project:namespace}}</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>
@@ -28,7 +30,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\{{project:namespace}}.Dal.XML</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\{{project:namespace}}.xml</DocumentationFile>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,34 +47,61 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NFramework.CacheTool">
+      <HintPath>{{project:reference}}\NFramework\NFramework.CacheTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.ConfigTool">
+      <HintPath>{{project:reference}}\NFramework\NFramework.ConfigTool.dll</HintPath>
+    </Reference>
     <Reference Include="NFramework.DBTool">
-      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.DBTool.dll</HintPath>
+      <HintPath>{{project:reference}}\NFramework\NFramework.DBTool.dll</HintPath>
     </Reference>
     <Reference Include="NFramework.ExceptionTool">
-      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.ExceptionTool.dll</HintPath>
+      <HintPath>{{project:reference}}\NFramework\NFramework.ExceptionTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.LocalizationTool">
+      <HintPath>{{project:reference}}\NFramework\NFramework.LocalizationTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.LogTool">
+      <HintPath>{{project:reference}}\NFramework\NFramework.LogTool.dll</HintPath>
     </Reference>
     <Reference Include="NFramework.ObjectTool">
-      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.ObjectTool.dll</HintPath>
+      <HintPath>{{project:reference}}\NFramework\NFramework.ObjectTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.ProjectKey">
+      <HintPath>{{project:reference}}\NFramework\NFramework.ProjectKey.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.SecurityTool">
+      <HintPath>{{project:reference}}\NFramework\NFramework.SecurityTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.ValidationTool">
+      <HintPath>{{project:reference}}\NFramework\NFramework.ValidationTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.ValidationTool.Globalization">
+      <HintPath>{{project:reference}}\NFramework\NFramework.ValidationTool.Globalization.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>{{loop:table}}
-    <Compile Include="IDal\I{{table:name}}Dal.cs" />
-    <Compile Include="Searcher\{{table:name}}Searcher.cs" />
     <Compile Include="Entity\{{table:name}}.cs" />{{/loop:table}}
     <Compile Include="Handler\{{project:name}}Handler.cs" />
-    <Compile Include="IDal\DalManager.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="IDal\IDalFactory.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IDal\DalManager.cs" />{{loop:table}}
+    <Compile Include="IDal\I{{table:name}}Dal.cs" />{{/loop:table}}
+    <Compile Include="Properties\AssemblyInfo.cs" />{{loop:table}}
+    <Compile Include="Searcher\{{table:name}}Searcher.cs" />{{/loop:table}}
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\{{project:name}}.Globalization\{{project:name}}.Globalization.csproj">
+      <Project>{1f41c2e1-6c40-4f71-b32e-c7ba9b587447}</Project>
+      <Name>{{project:name}}.Globalization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

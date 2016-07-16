@@ -1,21 +1,27 @@
-﻿namespace {{proejct:namespace}}.IDal
+namespace {{project:namespace}}.IDal 
 {
-    #region Reference
-    
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+	#region Reference
+	
+	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+    using System.Data;
+	using System.Linq;
+	using System.Text;
 
-    #endregion
-    
+    using NFramework.DBTool.Common;
+
+	#endregion
+
+	/// <summary>
+	/// 数据操作对象创建者
+	/// </summary>
     public interface IDalFactory : NFramework.DBTool.Common.IDalFactoryBase
-    {{{loop:table}}
+    {
+		{{loop:table}}
         /// <summary>
-        /// 创建一个{{table:comment}}数据操作接口
+        /// 创建{{table:comment}}数据操作类
         /// </summary>
-        /// <returns>返回{{table:comment}}数据操作接口</returns>
-        I{{table:name}}Dal Create{{table:name}}Dal();
-        {{/loop:table}}
+        I{{table:name}}Dal Create{{table:name}}Dal();{{/loop:table}}
     }
 }

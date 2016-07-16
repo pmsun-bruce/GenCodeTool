@@ -318,4 +318,7 @@
   <data name="Error_SameSettingName" xml:space="preserve">
     <value>Error_SameSettingName</value>
   </data>
+  <data name="NoTableInfo" xml:space="preserve">
+    <value>No Table</value>
+  </data>
 </root>

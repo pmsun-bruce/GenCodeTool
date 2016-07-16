@@ -743,6 +743,7 @@
             this.Controls.Add(this.TablePanel);
             this.Controls.Add(this.SettingPanel);
             this.Name = "MainForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "代码生成";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

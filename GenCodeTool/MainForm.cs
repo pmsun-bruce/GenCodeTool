@@ -27,6 +27,7 @@ namespace NFramework.GenCodeTool
             DBInfoGetterBSource.DataSource = DBInfoGetterFactory.DBInfoGetterPool;
             CodeInfoGetterBSource.DataSource = CodeInfoGetterFactory.CodeInfoGetterPool;
             GenSettingBSource.DataSource = GenCodeHandler.GenSettingPool;
+            TableInfoBSource.DataSource = null;
             Dictionary<string, string> tmplPool = GenCodeHandler.CodeTemplatePool;
 
             if (GenCodeHandler.GenSettingPool.Count > 0)
@@ -38,7 +39,7 @@ namespace NFramework.GenCodeTool
             {
                 CodeTemplateBSource.DataSource = tmplPool.Keys;
             }
-            
+
             #region Control Display
 
             this.ConnectDbBtn.Text = GenCodeToolResource.ConnectDB;
@@ -142,6 +143,13 @@ namespace NFramework.GenCodeTool
             projectInfo.GenTargetPath = this.GenTargetFolderTxt.Text;
             projectInfo.DBInfoGetter = (IDBInfoGetter)DBInfoGetterCbx.SelectedItem;
             projectInfo.CodeInfoGetter = (ICodeInfoGetter)CodeInfoGetterCbx.SelectedItem;
+
+            if (TableInfoBSource.DataSource == null)
+            {
+                MessageBox.Show(GenCodeToolResource.NoTableInfo, GenCodeToolResource.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             IList<TableInfo> tableInfoList = (IList<TableInfo>)TableInfoBSource.DataSource;
             projectInfo.AllDBTableInfoList = tableInfoList;
 

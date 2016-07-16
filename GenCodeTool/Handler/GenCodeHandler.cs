@@ -619,6 +619,7 @@
             string fileContent = File.ReadAllText(filePath);
             fileContent = ReplaceProjectContentPlaceholder(fileContent, tableInfo.CurrProjectInfo);
             fileContent = ReplaceTableContentPlaceholder(fileContent, tableInfo);
+            fileContent = ReplaceColumnExistIFSectionContent(fileContent, tableInfo);
             fileContent = ReplaceIFSectionContent(fileContent, tableInfo);
             fileContent = ReplaceColumnLoopContent(fileContent, tableInfo);
             fileContent = ReplacePKLoopContent(fileContent, tableInfo);
@@ -674,6 +675,8 @@
                     tmpString = ReplaceTableContentPlaceholder(matchString, tableInfo);
                     tmpString = ReplaceColumnLoopContent(tmpString, tableInfo);
                     tmpString = ReplacePKLoopContent(tmpString, tableInfo);
+                    tmpString = ReplaceColumnExistIFSectionContent(tmpString, tableInfo);
+                    tmpString = ReplaceIFSectionContent(tmpString, tableInfo);
                     ReplaceTableIFSectionContent(tmpString, tableInfo, out tmpString);
 
                     if(tableInfo.PKList.Count > 0)
@@ -913,6 +916,11 @@
 
                 foreach (ColumnInfo columnInfo in tableInfo.ColumnList)
                 {
+                    if(CheckIgnoreParamForPlaceholder(match.Value, columnInfo))
+                    {
+                        continue;
+                    }
+
                     tmpString = ReplaceColumnContentPlaceholder(matchString, columnInfo);
                     count += ReplaceColumnIFSectionContent(tmpString, columnInfo, out tmpResultString);
                     tmpResultString = ReplaceFunctionSectionContent(tmpResultString);
@@ -1047,6 +1055,53 @@
             return hasContentCount;
         }
 
+        /// <summary>
+        /// 当特定字段存在时才生成内容
+        /// </summary>
+        /// <param name="content">需要替换的内容</param>
+        /// <param name="tableInfo">表信息对象</param>
+        /// <returns>返回替换后的内容</returns>
+        private static string ReplaceColumnExistIFSectionContent(string content, TableInfo tableInfo)
+        {
+            string contentString = content;
+            Regex regex = GetRegex(ContentTemplatePlaceholder.ColumnExistIFSection);
+            MatchCollection matchCollection = regex.Matches(contentString);
+            string matchString = string.Empty;
+            string tagHead = string.Empty;
+            string[] paramArr = null;
+            bool isExist = false;
+
+            foreach (Match match in matchCollection)
+            {
+                matchString = match.Value;
+                tagHead = matchString.Substring(0, matchString.IndexOf("}}") + 2);
+                tagHead = tagHead.Replace("}}", "").Replace("{{", "");
+                paramArr = tagHead.Split('|');
+
+                if(paramArr.Length <= 1)
+                {
+                    isExist = false;
+                }
+                else
+                {
+                    isExist = (tableInfo.ColumnList.Count(c => c.NameLow.Equals(paramArr[1].ToLower())) > 0);
+                }
+
+                matchString = RemovePlaceholder(ContentTemplatePlaceholder.ColumnExistIFSection, matchString);
+
+                if (!isExist)
+                {
+                    contentString = contentString.Replace(match.Value, string.Empty);
+                }
+                else
+                {
+                    contentString = contentString.Replace(match.Value, matchString);
+                }
+            }
+
+            return contentString;
+        }
+
         #endregion
 
         #region Function Section
@@ -1142,7 +1197,7 @@
         /// </summary>
         /// <param name="matchString">正则匹配出来的字符串</param>
         /// <param name="columnInfo">字段信息对象</param>
-        /// <returns>返回替换后的内容</returns>
+        /// <returns>如果是排除内容则返回true，如果不是则返回false</returns>
         private static bool CheckIgnoreParamForPlaceholder(string matchString, ColumnInfo columnInfo)
         {
             if (string.IsNullOrWhiteSpace(matchString) || columnInfo == null)
@@ -1404,7 +1459,8 @@
                                    .Replace(ContentTemplatePlaceholder.ProjectNameUp, projectInfo.NameUp)
                                    .Replace(ContentTemplatePlaceholder.ProjectNameLowFirst, projectInfo.NameLowFirst)
                                    .Replace(ContentTemplatePlaceholder.ProjectNamespace, projectInfo.Namespace)
-                                   .Replace(ContentTemplatePlaceholder.ProjectDisplayName, projectInfo.DisplayName);
+                                   .Replace(ContentTemplatePlaceholder.ProjectDisplayName, projectInfo.DisplayName)
+                                   .Replace(ContentTemplatePlaceholder.ProjectReference, projectInfo.ReferenceRootFolder);
 
             return result;
         }

@@ -1,16 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F4A3FA8-1DE1-4BC3-87B9-C0E354AD0034}</ProjectGuid>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10835434-53F7-4718-8D0A-0786F47CC14E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>{{project:namespace}}.Dal</RootNamespace>
     <AssemblyName>{{project:namespace}}.Dal</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +30,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <DocumentationFile>bin\Debug\{{project:namespace}}.Dal.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -35,21 +48,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NFramework.DBTool">
-      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.DBTool.dll</HintPath>
+      <HintPath>{{project:reference}}\NFramework\NFramework.DBTool.dll</HintPath>
     </Reference>
     <Reference Include="NFramework.ExceptionTool">
-      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.ExceptionTool.dll</HintPath>
+      <HintPath>{{project:reference}}\NFramework\NFramework.ExceptionTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.LogTool, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d0e6a321f493372a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>{{project:reference}}\NFramework\NFramework.LogTool.dll</HintPath>
     </Reference>
     <Reference Include="NFramework.ObjectTool">
-      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.ObjectTool.dll</HintPath>
+      <HintPath>{{project:reference}}\NFramework\NFramework.ObjectTool.dll</HintPath>
+    </Reference>
+    <Reference Include="NFramework.ValidationTool.Globalization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=400e3a2c2c7e658f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>{{project:reference}}\NFramework\NFramework.ValidationTool.Globalization.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>{{loop:table}}
     <Compile Include="{{table:name}}Dal.cs" />{{/loop:table}}
@@ -58,11 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\{{project:name}}.Globalization\{{project:name}}.Globalization.csproj">
-      <Project>{7D3AEF82-C4E4-48A2-9697-06BD84BD5669}</Project>
+      <Project>{1f41c2e1-6c40-4f71-b32e-c7ba9b587447}</Project>
       <Name>{{project:name}}.Globalization</Name>
     </ProjectReference>
     <ProjectReference Include="..\{{project:name}}\{{project:name}}.csproj">
-      <Project>{9FC827A5-2C33-4704-A045-482F050A201C}</Project>
+      <Project>{FE4A8175-E694-4D52-B922-806E353FA078}</Project>
       <Name>{{project:name}}</Name>
     </ProjectReference>
   </ItemGroup>

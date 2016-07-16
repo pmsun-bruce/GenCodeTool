@@ -1,33 +1,35 @@
-﻿namespace {{proejct:namespace}}.IDal 
+namespace {{project:namespace}}.IDal 
 {
-    #region Reference
-
-    using System;
-    using System.Collections.Generic;
+	#region Reference
+	
+	using System;
+	using System.Collections;
+	using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
+	using System.Linq;
+	using System.Text;
 
-    #endregion
+	#endregion
 
-	/// <summary>
-    /// 数据存储管理器
+    /// <summary>
+    /// 数据操作管理类，存储了具体数据的Dal工厂类
     /// </summary>
     public class DalManager
     {
         #region Fields & Properties
 
         /// <summary>
-        /// Dal创建器
+        /// Dal工厂类
         /// </summary>
         private static IDalFactory dalFactory;
         /// <summary>
-        /// Dal创建器
+        /// Dal工厂类，只读属性
         /// </summary>
         public static IDalFactory DalFactory
         {
             get
             {
-                return dalFactory;
+                return DalManager.dalFactory;
             }
         }
 
@@ -36,9 +38,9 @@
         #region Public Static Methods
 
         /// <summary>
-        /// 加载Dal创建器
+        /// 加载Dal工厂
         /// </summary>
-        /// <param name="dalFactory">Dal创建器</param>
+        /// <param name="dalFactory">实际运用的Dal工厂类</param>
         public static void Load(IDalFactory dalFactory)
         {
             DalManager.dalFactory = dalFactory;
@@ -46,5 +48,4 @@
 
         #endregion
     }
-
 }

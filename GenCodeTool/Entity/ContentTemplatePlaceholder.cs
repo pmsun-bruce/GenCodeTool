@@ -39,7 +39,11 @@
         /// <summary>
         /// 项目显示名称占位符
         /// </summary>
-        public const string ProjectDisplayName = "{{project:displayname}}"; 
+        public const string ProjectDisplayName = "{{project:displayname}}";
+        /// <summary>
+        /// 项目引用根路径
+        /// </summary>
+        public const string ProjectReference = "{{project:reference}}";
 
         #endregion
 
@@ -222,7 +226,7 @@
         /// <summary>
         /// 主键在Dal中使用的数据类型占位符
         /// </summary>
-        public const string PKDalType = "{{col:daltype}}";
+        public const string PKDalType = "{{pk:col:daltype}}";
         /// <summary>
         /// 主键类型转换占位符
         /// </summary>
@@ -544,7 +548,7 @@
         /// <summary>
         /// 关联字段所在表的主键字段在DAL中的数据类型占位符
         /// </summary>
-        public const string RKPKDalType = "{{fk:pk:col:daltype}}";
+        public const string RKPKDalType = "{{rk:pk:col:daltype}}";
         /// <summary>
         /// 关联字段所在表的主键字段数据类型转换占位符
         /// </summary>
@@ -615,6 +619,10 @@
         /// 判断性循环字段，如果该占位符内部有其他判断性占位符，如果都为false时，整段将被替换为空字符串
         /// </summary>
         public const string ColumnLoopIFSection = "{{if:loop:col}}{0}{{/if:loop:col}}";
+        /// <summary>
+        /// 判断字段是否存在，如果存在才生成内部内容，如果不存在则不生成
+        /// </summary>
+        public const string ColumnExistIFSection = "{{if:col:exist}}{0}{{/if:col:exist}}";
 
         #region Validate IF Section
 

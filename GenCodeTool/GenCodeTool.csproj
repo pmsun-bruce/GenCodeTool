@@ -36,15 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>..\..\..\..\ReferenceLib\ThirdLib\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="NFramework.ExceptionTool, Version=1.0.0.1, Culture=neutral, PublicKeyToken=d0e6a321f493372a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.ExceptionTool.dll</HintPath>
-    </Reference>
-    <Reference Include="NFramework.ObjectTool, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d0e6a321f493372a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\ReferenceLib\NFramework\NFramework.ObjectTool.dll</HintPath>
+      <HintPath>R:\ThirdLib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -62,6 +54,9 @@
     <Compile Include="CodeInfoGetter\CSCodeInfoGetter.cs" />
     <Compile Include="CodeInfoGetter\CSCodeType.cs" />
     <Compile Include="CodeInfoGetter\ICodeInfoGetter.cs" />
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-name}}Resource.Designer.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="DBInfoGetter\OracleSqlType.cs" />
     <Compile Include="Entity\GenSetting.cs" />
     <Compile Include="Resources\Lan\GenCodeToolResource.Designer.cs">
@@ -72,41 +67,13 @@
     <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{project-name}}.Globalization.csproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-name}}Resource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>{{table-loop}}{{table-name}}Resource.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{project-name}}Resource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>{{project-name}}Resource.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}.MssqlDal\{{project-name}}.MssqlDal.csproj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\Source\JS\{{project-name}}\{{table-loop}}{{table-name}}Mgr\{{table-name}}.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}\Entity\{{table-loop}}{{table-name}}.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}\Entity\{{table-loop}}{{table-name}}.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}\Handler\{{project-name}}Handler.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-name}}Resource.Designer.cs">
-      <DependentUpon>{{table-loop}}{{table-name}}Resource.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{project-name}}Resource.Designer.cs">
-      <DependentUpon>{{project-name}}Resource.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}\IDal\DalManager.cs">
@@ -168,6 +135,12 @@
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-name}}Resource.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-name}}Resource.zh.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,11 +184,22 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\WriteSource\" />
+    <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\Resource\JS\" />
+    <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\WRsource\" />
     <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\UserControls\" />
     <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-name}}\" />
     <Folder Include="CodeTemplate\CSWinForm\" />
     <Folder Include="Resources\Config\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExceptionTool\ExceptionTool.csproj">
+      <Project>{3ffb9c31-c91c-4774-8dbf-d8d764bee057}</Project>
+      <Name>ExceptionTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObjectTool\ObjectTool.csproj">
+      <Project>{9e36cc84-750e-40df-961c-e205340db4c2}</Project>
+      <Name>ObjectTool</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

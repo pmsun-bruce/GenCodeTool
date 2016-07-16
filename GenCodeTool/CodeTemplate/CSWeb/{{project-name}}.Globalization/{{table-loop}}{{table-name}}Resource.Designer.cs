@@ -68,87 +68,175 @@ namespace {{project:namespace}}.Globalization {
                 return ResourceManager.GetString("{{col:name}}", resourceCulture);
             }
         }
-        {{if:col:required}}
+        {{/loop:col}}
         /// <summary>
-        ///   查找类似 {{col:comment}} 的本地化字符串。
+        ///   查找类似 外键错误 的本地化字符串。
         /// </summary>
-        public static string Error_{{col:name}}_Required {
+        public static string ErrorFK {
             get {
-                return ResourceManager.GetString("Error_{{col:name}}_Required", resourceCulture);
-            }
-        }
-        {{/if:col:required}}
-        {{if:col:maxlen}}
-        /// <summary>
-        ///   查找类似 {{col:comment}} 的本地化字符串。
-        /// </summary>
-        public static string Error_{{col:name}}_MaxLength {
-            get {
-                return ResourceManager.GetString("Error_{{col:name}}_MaxLength", resourceCulture);
-            }
-        }
-        {{/if:col:maxlen}}
-        {{/loop:col}}{{rlast}}\n\n{{/rlast}}
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string Error_AddFaild {
-            get {
-                return ResourceManager.GetString("Error_AddFaild", resourceCulture);
+                return ResourceManager.GetString("ErrorFK", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 唯一性错误 的本地化字符串。
         /// </summary>
-        public static string Error_AddFK {
+        public static string ErrorUQ {
             get {
-                return ResourceManager.GetString("Error_AddFK", resourceCulture);
+                return ResourceManager.GetString("ErrorUQ", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 未添加成功 的本地化字符串。
         /// </summary>
-        public static string Error_AddUQ {
+        public static string ErrorNoAdd {
             get {
-                return ResourceManager.GetString("Error_AddUQ", resourceCulture);
+                return ResourceManager.GetString("ErrorNoAdd", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 记录版本已变更 的本地化字符串。
         /// </summary>
-        public static string Error_DeleteFK {
+        public static string ErrorVersionChanged {
             get {
-                return ResourceManager.GetString("Error_DeleteFK", resourceCulture);
+                return ResourceManager.GetString("ErrorVersionChanged", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 未更新成功 的本地化字符串。
         /// </summary>
-        public static string Error_UpdateFaild {
+        public static string ErrorNoUpdate {
             get {
-                return ResourceManager.GetString("Error_UpdateFaild", resourceCulture);
+                return ResourceManager.GetString("ErrorNoUpdate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 新建 的本地化字符串。
         /// </summary>
-        public static string Error_UpdateFK {
+        public static string Add {
             get {
-                return ResourceManager.GetString("Error_UpdateFK", resourceCulture);
+                return ResourceManager.GetString("Add", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 修改 的本地化字符串。
         /// </summary>
-        public static string Error_UpdateUQ {
+        public static string Edit {
             get {
-                return ResourceManager.GetString("Error_UpdateUQ", resourceCulture);
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 删除 的本地化字符串。
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 查询 的本地化字符串。
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 查看 的本地化字符串。
+        /// </summary>
+        public static string View {
+            get {
+                return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 导入 的本地化字符串。
+        /// </summary>
+        public static string Import {
+            get {
+                return ResourceManager.GetString("Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 导出 的本地化字符串。
+        /// </summary>
+        public static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 确认删除 的本地化字符串。
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   查找类似 新建失败 的本地化字符串。
+        /// </summary>
+        public static string AddFail {
+            get {
+                return ResourceManager.GetString("AddFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 更新失败 的本地化字符串。
+        /// </summary>
+        public static string UpdateFail {
+            get {
+                return ResourceManager.GetString("UpdateFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 删除失败 的本地化字符串。
+        /// </summary>
+        public static string DeleteFail {
+            get {
+                return ResourceManager.GetString("DeleteFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 新建成功 的本地化字符串。
+        /// </summary>
+        public static string AddSuccess {
+            get {
+                return ResourceManager.GetString("AddSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 更新成功 的本地化字符串。
+        /// </summary>
+        public static string UpdateSuccess {
+            get {
+                return ResourceManager.GetString("UpdateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 删除成功 的本地化字符串。
+        /// </summary>
+        public static string DeleteSuccess {
+            get {
+                return ResourceManager.GetString("DeleteSuccess", resourceCulture);
             }
         }
     }

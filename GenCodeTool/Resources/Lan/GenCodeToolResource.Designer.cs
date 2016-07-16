@@ -520,6 +520,15 @@ namespace NFramework.GenCodeTool.Resources.Lan {
         }
         
         /// <summary>
+        ///   查找类似 No Table 的本地化字符串。
+        /// </summary>
+        public static string NoTableInfo {
+            get {
+                return ResourceManager.GetString("NoTableInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Precision 的本地化字符串。
         /// </summary>
         public static string Precision {

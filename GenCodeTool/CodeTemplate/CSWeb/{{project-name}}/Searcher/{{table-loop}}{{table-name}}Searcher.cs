@@ -1,27 +1,27 @@
-﻿namespace {{project:namespace}}.Searcher 
+namespace {{project:namespace}}.Searcher 
 {
 	#region Reference
-	
-	using System;
-	using System.Collections;
+
+    using System;
+    using System.Collections;
     using System.Collections.Generic;
-    using System.Data;
-	using System.Linq;
-	using System.Text;
-    
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.Text;
+
     using NFramework.DBTool.QueryTool;
-	
+	 
 	#endregion
-    
+
 	/// <summary>
-	/// {{table:comment}}查询对象
+	/// {{table:comment}}
     /// </summary>
-    [DataContract]
     [Serializable]
-    public class {{table:name}}Searcher : Searcher
+    [DataContract(IsReference=true)]
+	public class {{table:name}}Searcher : NFramework.DBTool.QueryTool.Searcher
     {
         #region Fields & Properties
-        {{loop:col}}
+		{{loop:col}}
         /// <summary>
         /// {{col:comment}}查询条件
         /// </summary>
@@ -67,14 +67,14 @@
                 }
 
                 curr{{fk:table:name}} = value;
-
+                
                 if (!this.RelationSearcherList.Contains(curr{{fk:table:name}}))
                 {
                     this.RelationSearcherList.Add(curr{{fk:table:name}});
                 }
             }
         }
-        {{/loop:fk}}{{rlast}}\n\n{{/rlast}}
+        {{/loop:fk}}
         #endregion
         
         #region Public Constructors
@@ -88,6 +88,5 @@
         }
         
         #endregion
-
     }
 }

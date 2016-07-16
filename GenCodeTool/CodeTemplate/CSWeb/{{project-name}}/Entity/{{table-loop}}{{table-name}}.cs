@@ -1,23 +1,24 @@
-﻿namespace {{project:namespace}}
+namespace {{project:namespace}}.Entity 
 {
 	#region Reference
 	
 	using System;
-    using System.Collections.Generic;
-    using System.Linq;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.Linq;
     using System.Runtime.Serialization;
-    using System.Text;
-	 
+	using System.Text;
+	
 	#endregion
 
 	/// <summary>
-	/// {{table:comment}}实体类
-    /// </summary>
-    [DataContract]
+	/// {{table:comment}}
+	/// </summary>
     [Serializable]
-    public class {{table:name}}
+    [DataContract(IsReference=true)]
+    public class {{table:name}} : NFramework.DBTool.Common.IRVersion
     {
-        #region Fields & Properties
+		#region Fields & Properties
         {{loop:col}}
         /// <summary>
         /// {{col:comment}}
@@ -73,6 +74,5 @@
         }
         
         #endregion
-
     }
 }
