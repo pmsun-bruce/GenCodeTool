@@ -93,8 +93,11 @@
 
             switch (dbType)
             {
+                case DbType.AnsiString:
+                case DbType.AnsiStringFixedLength:
                 case DbType.String:
-                    defaultString = "\"" + defaultString + "\"";
+                case DbType.StringFixedLength:
+                    defaultString = string.IsNullOrEmpty(defaultString) ? "string.Empty" : "\"" + defaultString + "\"";
                     break;
                 case DbType.Int16:
                 case DbType.Int32:

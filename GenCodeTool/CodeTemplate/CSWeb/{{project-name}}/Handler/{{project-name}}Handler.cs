@@ -128,7 +128,7 @@ namespace {{project:namespace}}.Handler
         /// <returns>如存在返回False，不存在返回True</returns>
         public static bool CheckSame{{table:name}}{{col:name}}({{col:codetype}} {{col:lfname}}, {{pk:col:codetype}} {{pk:col:lfname}})
         {
-            return CheckSame{{table:name}}{{col:name}}({{table:lfname}}{{col:name}}, {{pk:col:lfname}}, null);
+            return CheckSame{{table:name}}{{col:name}}({{col:lfname}}, {{pk:col:lfname}}, null);
         }
 
         /// <summary>
@@ -183,12 +183,10 @@ namespace {{project:namespace}}.Handler
             Validator validator = new Validator();{{if:section}}
             {{if:loop:col|ignparam:pk,fk,rk,CreateTime,UpdateTime,CreaterId,UpdatorId|}}
             // {{col:comment}} Check{{if:col:required}}
-			validator.RuleList.Add(ValidateRuleFactory.Required({{table:lfname}}.{{col:name}}, string.Format(ValidateMessageResource.Required, {{table:name}}Resource.{{col:name}})));
-			{{/if:col:required}}{{if:col:max}}
-			validator.RuleList.Add(ValidateRuleFactory.Max({{table:lfname}}.{{col:name}}, {{col:max}}, string.Format(ValidateMessageResource.Max, {{table:name}}Resource.{{col:name}}, {{col:max}})));
+			validator.RuleList.Add(ValidateRuleFactory.Required({{col:tostring}}{{table:lfname}}.{{col:name}}{{/col:tostring}}, string.Format(ValidateMessageResource.Required, {{table:name}}Resource.{{col:name}})));{{/if:col:required}}{{if:col:max}}
+			validator.RuleList.Add(ValidateRuleFactory.Max({{col:tostring}}{{table:lfname}}.{{col:name}}{{/col:tostring}}, {{col:max}}, string.Format(ValidateMessageResource.Max, {{table:name}}Resource.{{col:name}}, {{col:max}})));
 			{{/if:col:max}}{{if:col:maxlen}}
-			validator.RuleList.Add(ValidateRuleFactory.MaxLen({{table:lfname}}.{{col:name}}, {{col:maxlen}}, string.Format(ValidateMessageResource.MaxLen, {{table:name}}Resource.{{col:name}}, {{col:maxlen}})));{{/if:col:maxlen}}{{if:col:min}}
-			validator.RuleList.Add(ValidateRuleFactory.Max({{table:lfname}}.{{col:name}}, {{col:min}}, string.Format(ValidateMessageResource.Min, {{table:name}}Resource.{{col:name}}, {{col:min}})));{{/if:col:min}}
+			validator.RuleList.Add(ValidateRuleFactory.MaxLen({{table:lfname}}.{{col:name}}, {{col:maxlen}}, string.Format(ValidateMessageResource.MaxLen, {{table:name}}Resource.{{col:name}}, {{col:maxlen}})));{{/if:col:maxlen}}
 			{{if:col:unique}}
 			if(string.IsNullOrWhiteSpace({{table:lfname}}.{{pk:col:name}}))
             {
@@ -379,7 +377,7 @@ namespace {{project:namespace}}.Handler
         /// <param name="{{pk:col:lfname}}">{{table:comment}}PK</param>
         /// <param name="tran">数据库事务对象</param>
         /// <returns>返回资源类型对象，如未找到返回null</returns>
-        public static {{table:name}} Get{{table:name}}ById({{pk:col:codetype}} {{pk:col:lfname}}, ICTransaction tran)
+        public static {{table:name}} Get{{table:name}}ByPK({{pk:col:codetype}} {{pk:col:lfname}}, ICTransaction tran)
         {
             return {{table:name}}Dal.FindSingle({{pk:col:lfname}}, tran);
         }
@@ -444,7 +442,7 @@ namespace {{project:namespace}}.Handler
         /// <param name="pager">分页对象</param>
         /// <param name="tran">中间数据库事务对象</param>
         /// <returns>返回分页结果对象</returns>
-        public static PageList<{{table:name}}> Get{{table:name}}List({{table:name}}Searcher {{table:name}}({{table:lfname}}Searcher, Pager pager, ICTransaction tran)
+        public static PageList<{{table:name}}> Get{{table:name}}List({{table:name}}Searcher {{table:lfname}}Searcher, Pager pager, ICTransaction tran)
         {
             return {{table:name}}Dal.FindList({{table:lfname}}Searcher, pager, tran);
         }
@@ -465,7 +463,7 @@ namespace {{project:namespace}}.Handler
         /// <returns>返回{{table:comment}}数量</returns>
         public static long Count{{table:name}}(ICTransaction tran)
         {
-            {{table:name}}Searcher {{table:name}}({{table:lfname}}Searcher = new {{table:name}}Searcher();
+            {{table:name}}Searcher {{table:lfname}}Searcher = new {{table:name}}Searcher();
             return Count{{table:name}}({{table:lfname}}Searcher, tran);
         }
 
@@ -490,8 +488,7 @@ namespace {{project:namespace}}.Handler
             return {{table:name}}Dal.Count({{table:lfname}}Searcher, tran);
         }
 		
-        #endregion{{/loop:table}}
-
         #endregion
+        {{/loop:table}}
     }
 }

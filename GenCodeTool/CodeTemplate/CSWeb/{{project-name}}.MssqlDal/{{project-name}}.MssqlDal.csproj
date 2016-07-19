@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{10835434-53F7-4718-8D0A-0786F47CC14E}</ProjectGuid>
+    <ProjectGuid>{{{project:guid|3}}}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>{{project:namespace}}.Dal</RootNamespace>
@@ -78,11 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\{{project:name}}.Globalization\{{project:name}}.Globalization.csproj">
-      <Project>{1f41c2e1-6c40-4f71-b32e-c7ba9b587447}</Project>
+      <Project>{{{project:guid|2}}}</Project>
       <Name>{{project:name}}.Globalization</Name>
     </ProjectReference>
     <ProjectReference Include="..\{{project:name}}\{{project:name}}.csproj">
-      <Project>{FE4A8175-E694-4D52-B922-806E353FA078}</Project>
+      <Project>{{{project:guid|1}}}</Project>
       <Name>{{project:name}}</Name>
     </ProjectReference>
   </ItemGroup>

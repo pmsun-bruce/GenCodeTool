@@ -512,31 +512,31 @@
                     switch (this.DbType)
                     {
                         case DbType.Int16:
-                            maxValue = short.MinValue.ToString();
+                            minValue = short.MinValue.ToString();
                             break;
                         case DbType.Int32:
-                            maxValue = int.MinValue.ToString();
+                            minValue = int.MinValue.ToString();
                             break;
                         case DbType.Int64:
-                            maxValue = long.MinValue.ToString();
+                            minValue = long.MinValue.ToString();
                             break;
                         case DbType.Decimal:
-                            maxValue = decimal.MinValue.ToString();
+                            minValue = decimal.MinValue.ToString();
                             break;
                         case DbType.Single:
-                            maxValue = float.MinValue.ToString();
+                            minValue = float.MinValue.ToString();
                             break;
                         case DbType.Double:
-                            maxValue = double.MinValue.ToString();
+                            minValue = double.MinValue.ToString();
                             break;
                         case DbType.DateTime:
-                            maxValue = "1753-01-01";
+                            minValue = "1753-01-01";
                             break;
                         case DbType.Byte:
-                            maxValue = byte.MinValue.ToString();
+                            minValue = byte.MinValue.ToString();
                             break;
                         default:
-                            maxValue = string.Empty;
+                            minValue = string.Empty;
                             break;
                     }
                 }

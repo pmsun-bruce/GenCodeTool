@@ -20,6 +20,15 @@
         #region Fields & Properties
 
         /// <summary>
+        /// 生成的项目的唯一GUID
+        /// </summary>
+        private IDictionary<int, string> ProjectGUIDs
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 项目名称，用于项目的物理文件，目录等的生成
         /// </summary>
         public string Name
@@ -204,7 +213,7 @@
         }
 
         /// <summary>
-        /// 
+        /// 当前需要生成的文件列表
         /// </summary>
         public IList<string> CurrGenFileList
         {
@@ -224,6 +233,30 @@
         {
             tableInfo.CurrProjectInfo = this;
             this.GenTableInfoList.Add(tableInfo);
+        }
+
+        /// <summary>
+        /// 项目GUID
+        /// </summary>
+        /// <param name="index">序号</param>
+        /// <returns>返回指定序号的GUID</returns>
+        public string GetProjectGUID(int index)
+        {
+            if(ProjectGUIDs == null)
+            {
+                ProjectGUIDs = new Dictionary<int, string>();
+            }
+
+            if(!ProjectGUIDs.Keys.Contains(index))
+            {
+                string guid = Guid.NewGuid().ToString();
+                ProjectGUIDs[index] = guid;
+                return guid;
+            }
+            else
+            {
+                return ProjectGUIDs[index];
+            }
         }
 
         #endregion

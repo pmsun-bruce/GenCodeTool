@@ -1462,6 +1462,31 @@
                                    .Replace(ContentTemplatePlaceholder.ProjectDisplayName, projectInfo.DisplayName)
                                    .Replace(ContentTemplatePlaceholder.ProjectReference, projectInfo.ReferenceRootFolder);
 
+            Regex regex = new Regex(ContentTemplatePlaceholder.ProjectGUID.Replace("}}", @"\|([0-9]+)\}\}").Replace("{{", @"\{\{"));
+            MatchCollection matchCollection = regex.Matches(result);
+            string[] paramArr = null;
+            string param = string.Empty;
+            int guidIndex = 0;
+
+            foreach (Match match in matchCollection)
+            {
+                paramArr = match.Value.Replace("{{", "").Replace("}}", "").Split('|');
+                
+                if(paramArr.Length < 2)
+                {
+                    continue;
+                }
+
+                param = paramArr[1];
+                
+                if(!int.TryParse(param, out guidIndex))
+                {
+                    continue;
+                }
+
+                result = result.Replace(match.Value, projectInfo.GetProjectGUID(guidIndex));
+            }
+
             return result;
         }
 
@@ -1505,7 +1530,7 @@
                                    .Replace(ContentTemplatePlaceholder.ColumnMin, columnInfo.MinValue)
                                    .Replace(ContentTemplatePlaceholder.ColumnFKName, columnInfo.FKName)
                                    .Replace(ContentTemplatePlaceholder.ColumnId, columnInfo.ColId.ToString())
-                                   .Replace(ContentTemplatePlaceholder.ColumnDefaultValue, columnInfo.CurrTable.CurrProjectInfo.CodeInfoGetter.GetDefaultValueString(columnInfo.DefaultValue, columnInfo.DbType));
+                                   .Replace(ContentTemplatePlaceholder.ColumnDefaultValue, columnInfo.IsNullable && string.IsNullOrEmpty(columnInfo.DefaultValue) ? "null" : columnInfo.CurrTable.CurrProjectInfo.CodeInfoGetter.GetDefaultValueString(columnInfo.DefaultValue, columnInfo.DbType));
 
             Regex regex = null;
             MatchCollection matchCollection = null; 

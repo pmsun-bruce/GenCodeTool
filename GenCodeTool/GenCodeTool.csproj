@@ -66,6 +66,7 @@
     </Compile>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{project-name}}.Globalization.csproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}.MssqlDal\{{project-name}}.MssqlDal.csproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

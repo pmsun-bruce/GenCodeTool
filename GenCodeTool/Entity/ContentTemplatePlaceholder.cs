@@ -44,6 +44,10 @@
         /// 项目引用根路径
         /// </summary>
         public const string ProjectReference = "{{project:reference}}";
+        /// <summary>
+        /// 项目的唯一GUID
+        /// </summary>
+        public const string ProjectGUID = "{{project:guid}}";
 
         #endregion
 
