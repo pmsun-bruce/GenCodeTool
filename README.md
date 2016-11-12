@@ -1,9 +1,33 @@
-本工具用于根据数据库表结构生成项目和代码，生成所使用的项目或代码模板可由用户根据规定的占位标记自行制定（占位标记可根据用户需要自行扩展）。
+## Table of contents
+- [Introduce](#introduce)
+- [Quick start](#quick-start)
+- [Documentation](#documentation)
+- [Lisence](#lisence)
 
-可根据外键关联关系，在实体类中生成关联对象和关联对象集合，在DAL层生成JOIN SQL。  
+## Introduce
 
-目前已实现MSSQL和ORACEL数据库的信息读取，如需进行其他数据库信息读取，请自行实现IDBInfoGetter接口，并在DBInfoGetterFactory中进行注册，即可在界面上选择。  
+Generate the project code according to the database table structure.  
+If the template is good, the generated code can run, and complete the basic function for CRUD.
 
-目前已实现C#代码的各种数据类型转换，如需进行其他代码的转换功能，请自行实现ICodeInfoGetter接口，并在CodeInfoGetterFactory中进行注册，即可在界面上选择。  
+## Quick start
 
-ASP.NET页面，JS等也可进行生成，来减少重复代码的编写，提高效率。如果确定好项目结构，基本的增删改查的功能生成后即能使用。  
+- Build the project, and run GenCodeTool.exe.
+- Connect DB.
+- Choose program language type.
+- Choose template.
+- Fill project information.
+- Then you can generate all code.
+
+## Documentation
+**Code Template**  
+Template files must put in CodeTemplate folder, a group template files must put in one folder. One folder one type. You can choose the type in program.
+
+**Multi-database support**  
+Now support MS SQL Server and Mysql. Want to suport another DB, you can build a class that inherits from the IDbInfoGetter interface, and regist it in 'DbInfoGetterFactory'.
+
+**Multi-code support**  
+Now support C#. If you want to support Java or another language, you can build a class that inherits from the ICodeInfoGetter interface,  and regist it in 'CodeInfoGetterFactory'.
+
+More detail information, please read help document.
+
+## Lisence

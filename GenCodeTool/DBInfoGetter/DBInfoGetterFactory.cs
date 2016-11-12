@@ -57,8 +57,8 @@
             IDBInfoGetter oracleDbInfoGetter = new OracleDBInfoGetter();
             DBInfoGetterPool.Add(oracleDbInfoGetter);
             // Mysql
-            //IDBInfoGetter mySqlDbInfoGetter = new MySqlDBInfoGetter();
-            //DBInfoGetterPool.Add(mySqlDbInfoGetter);
+            IDBInfoGetter mySqlDbInfoGetter = new MysqlDBInfoGetter();
+            DBInfoGetterPool.Add(mySqlDbInfoGetter);
         }
 
         #endregion

@@ -36,7 +36,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>R:\ThirdLib\log4net.dll</HintPath>
+      <HintPath>..\..\..\..\ReferenceLib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ReferenceLib\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,9 +58,85 @@
     <Compile Include="CodeInfoGetter\CSCodeInfoGetter.cs" />
     <Compile Include="CodeInfoGetter\CSCodeType.cs" />
     <Compile Include="CodeInfoGetter\ICodeInfoGetter.cs" />
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-name}}Resource.Designer.cs">
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{project-name}}.Globalization.csproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.MysqlDal\{{project-name}}.MysqlDal.csproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.MssqlDal\{{table-loop}}{{table-cname}}Dal.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-cname}}Resource.Designer.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.MysqlDal\{{table-loop}}{{table-cname}}Dal.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.MysqlDal\DalFactory.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.MysqlDal\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\Resource\JS\{{table-loop}}{{table-cname}}Mgr\View{{table-cname}}.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\Resource\JS\{{table-loop}}{{table-cname}}Mgr\Search{{table-cname}}.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\Resource\JS\{{table-loop}}{{table-cname}}Mgr\Add{{table-cname}}.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\Resource\JS\{{table-loop}}{{table-cname}}Mgr\Update{{table-cname}}.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Add{{table-cname}}.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\View{{table-cname}}.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Update{{table-cname}}.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Search{{table-cname}}.aspx.cs">
+      <DependentUpon>Search{{table-cname}}.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Search{{table-cname}}.aspx.designer.cs">
+      <DependentUpon>Search{{table-cname}}.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Add{{table-cname}}.aspx.cs">
+      <DependentUpon>Add{{table-cname}}.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Add{{table-cname}}.aspx.designer.cs">
+      <DependentUpon>Add{{table-cname}}.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Update{{table-cname}}.aspx.cs">
+      <DependentUpon>Update{{table-cname}}.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Update{{table-cname}}.aspx.designer.cs">
+      <DependentUpon>Update{{table-cname}}.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\View{{table-cname}}.aspx.cs">
+      <DependentUpon>View{{table-cname}}.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\View{{table-cname}}.aspx.designer.cs">
+      <DependentUpon>View{{table-cname}}.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="DBInfoGetter\MysqlDBInfoGetter.cs" />
+    <Compile Include="DBInfoGetter\MysqlSqlType.cs" />
     <Compile Include="DBInfoGetter\OracleSqlType.cs" />
     <Compile Include="Entity\GenSetting.cs" />
     <Compile Include="Resources\Lan\GenCodeToolResource.Designer.cs">
@@ -64,14 +144,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GenCodeToolResource.resx</DependentUpon>
     </Compile>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{project-name}}.Globalization.csproj">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}.MssqlDal\{{project-name}}.MssqlDal.csproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}\Entity\{{table-loop}}{{table-name}}.cs">
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}.Web.csproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-cname}}Mgr\Search{{table-cname}}.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}\Entity\{{table-loop}}{{table-cname}}.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}\Handler\{{project-name}}Handler.cs">
@@ -83,19 +166,16 @@
     <Content Include="CodeTemplate\CSWeb\{{project-name}}\IDal\IDalFactory.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}\IDal\{{table-loop}}I{{table-name}}Dal.cs">
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}\IDal\{{table-loop}}I{{table-cname}}Dal.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}\{{project-name}}.csproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}\Searcher\{{table-loop}}{{table-name}}Searcher.cs">
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}\Searcher\{{table-loop}}{{table-cname}}Searcher.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}.MssqlDal\DalFactory.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.MssqlDal\{{table-loop}}{{table-name}}Dal.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CodeTemplate\CSWeb\{{project-name}}\Properties\AssemblyInfo.cs">
@@ -136,10 +216,10 @@
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-name}}Resource.resx">
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-cname}}Resource.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-name}}Resource.zh.resx">
+    <Content Include="CodeTemplate\CSWeb\{{project-name}}.Globalization\{{table-loop}}{{table-cname}}Resource.zh.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="MainForm.resx">
@@ -185,10 +265,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\Resource\JS\" />
     <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\WRsource\" />
     <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\UserControls\" />
-    <Folder Include="CodeTemplate\CSWeb\{{project-name}}.Web\{{project-name}}\{{table-loop}}{{table-name}}\" />
     <Folder Include="CodeTemplate\CSWinForm\" />
     <Folder Include="Resources\Config\" />
   </ItemGroup>

@@ -47,25 +47,29 @@
         #region Table Info
 
         /// <summary>
+        /// 表循环，即循环所有需要生成的表信息对象
+        /// </summary>
+        public const string TableLoop = "{{table-loop}}";
+        /// <summary>
         /// 表名称
         /// </summary>
         public const string TableName = "{{table-name}}";
         /// <summary>
+        /// 类名称
+        /// </summary>
+        public const string ClassName = "{{table-cname}}";
+        /// <summary>
         /// 全小写表名称
         /// </summary>
-        public const string TableNameLow = "{{table-lname}}";
+        public const string ClassNameLow = "{{table-lcname}}";
         /// <summary>
         /// 全大写表名称
         /// </summary>
-        public const string TableNameUp = "{{table-uname}}";
+        public const string ClassNameUp = "{{table-ucname}}";
         /// <summary>
         /// 首字母小写的表名称
         /// </summary>
-        public const string TableNameLowFirst = "{{table-lfname}}";
-        /// <summary>
-        /// 表循环，即循环所有需要生成的表信息对象
-        /// </summary>
-        public const string TableLoop = "{{table-loop}}";
+        public const string ClassNameLowFirst = "{{table-lfcname}}";
 
         #endregion
 

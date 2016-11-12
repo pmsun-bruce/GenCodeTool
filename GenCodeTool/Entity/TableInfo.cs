@@ -26,69 +26,95 @@
         }
 
         /// <summary>
-        /// 全小写表名称
+        /// 类名称，初始和表名相同
         /// </summary>
-        private string nameLow;
+        public string className;
+
         /// <summary>
-        /// 全小写表名称
+        /// 类名称，初始和表名相同
         /// </summary>
-        public string NameLow
+        public string ClassName
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(nameLow) && !string.IsNullOrWhiteSpace(Name))
+                if(string.IsNullOrWhiteSpace(className))
                 {
-                    nameLow = Name.ToLower();
+                    className = Name;
                 }
 
-                return nameLow;
+                return className;
+            }
+
+            set
+            {
+                className = value;
+            }
+        }
+
+        /// <summary>
+        /// 全小写类名称
+        /// </summary>
+        private string classNameLow;
+        /// <summary>
+        /// 全小写类名称
+        /// </summary>
+        public string ClassNameLow
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(classNameLow) && !string.IsNullOrWhiteSpace(ClassName))
+                {
+                    classNameLow = ClassName.ToLower();
+                }
+
+                return classNameLow;
             }
         }
 
         /// <summary>
         /// 全大写表名称
         /// </summary>
-        private string nameUp;
+        private string classNameUp;
         /// <summary>
         /// 全大写表名称
         /// </summary>
-        public string NameUp
+        public string ClassNameUp
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(nameUp) && !string.IsNullOrWhiteSpace(Name))
+                if (string.IsNullOrWhiteSpace(classNameUp) && !string.IsNullOrWhiteSpace(ClassName))
                 {
-                    nameUp = Name.ToUpper();
+                    classNameUp = ClassName.ToUpper();
                 }
 
-                return nameUp;
+                return classNameUp;
             }
         }
 
         /// <summary>
         /// 首字母小写的表名称
         /// </summary>
-        private string nameLowFirst;
+        private string classNameLowFirst;
         /// <summary>
         /// 首字母小写的表名称
         /// </summary>
-        public string NameLowFirst
+        public string ClassNameLowFirst
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(nameLowFirst) && !string.IsNullOrWhiteSpace(Name))
+                if (string.IsNullOrWhiteSpace(classNameLowFirst) && !string.IsNullOrWhiteSpace(ClassName))
                 {
-                    if (Name.Length > 1)
+                    if (ClassName.Length > 1)
                     {
-                        nameLowFirst = Name.Substring(0, 1).ToLower() + Name.Substring(1);
+                        classNameLowFirst = ClassName.Substring(0, 1).ToLower() + ClassName.Substring(1);
                     }
                     else
                     {
-                        nameLowFirst = Name.ToLower();
+                        classNameLowFirst = ClassName.ToLower();
                     }
                 }
 
-                return nameLowFirst;
+                return classNameLowFirst;
             }
         }
 
@@ -159,6 +185,12 @@
         /// 判断是否生成界面
         /// </summary>
         public bool IsGenUI
+        {
+            get;
+            set;
+        }
+
+        public int LoopIndex
         {
             get;
             set;

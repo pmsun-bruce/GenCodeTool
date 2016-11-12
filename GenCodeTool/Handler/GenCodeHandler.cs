@@ -658,20 +658,24 @@
             string matchString = string.Empty;
             string contentString = string.Empty;
             string tmpString = string.Empty;
+            int tblIndex = projectInfo.CodeInfoGetter.ArrayStartIndex;
+            int loopIndex = 1;
 
             foreach (Match match in matchCollection)
             {
                 contentString = string.Empty;
                 matchString = match.Value;
                 matchString = RemovePlaceholder(ContentTemplatePlaceholder.TableLoopSection, matchString);
+                tblIndex = projectInfo.CodeInfoGetter.ArrayStartIndex;
 
-                foreach(TableInfo tableInfo in projectInfo.GenTableInfoList)
+                foreach (TableInfo tableInfo in projectInfo.GenTableInfoList)
                 {
                     if (CheckIgnoreParamForPlaceholder(match.Value, tableInfo))
                     {
                         continue;
                     }
 
+                    tableInfo.LoopIndex = tblIndex;
                     tmpString = ReplaceTableContentPlaceholder(matchString, tableInfo);
                     tmpString = ReplaceColumnLoopContent(tmpString, tableInfo);
                     tmpString = ReplacePKLoopContent(tmpString, tableInfo);
@@ -688,10 +692,13 @@
                     tmpString = ReplaceFKLoopContent(tmpString, tableInfo);
                     tmpString = ReplaceRKLoopContent(tmpString, tableInfo);
                     contentString += tmpString;
+                    tblIndex++;
                 }
 
                 contentString = ReplaceParamForPlaceholder(match.Value, contentString);
                 sectionContent = sectionContent.Replace(match.Value, contentString);
+                sectionContent = sectionContent.Replace(ContentTemplatePlaceholder.TableLoopCount.Replace("{0}", loopIndex.ToString()), tblIndex.ToString());
+                loopIndex++;
             }
 
             return sectionContent;
@@ -711,22 +718,29 @@
             string matchString = string.Empty;
             string contentString = string.Empty;
             string tmpString = string.Empty;
+            int colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
+            int loopIndex = 1;
 
             foreach (Match match in matchCollection)
             {
                 contentString = string.Empty;
                 matchString = match.Value;
                 matchString = RemovePlaceholder(ContentTemplatePlaceholder.PKLoopSection, matchString);
+                colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
 
                 foreach (ColumnInfo columnInfo in tableInfo.PKList)
                 {
+                    columnInfo.LoopIndex = colIndex;
                     tmpString = ReplacePKContentPlaceholder(matchString, columnInfo);
                     ReplaceColumnIFSectionContent(tmpString, columnInfo, out tmpString);
                     contentString += tmpString;
+                    colIndex++;
                 }
-
+                
                 contentString = ReplaceParamForPlaceholder(match.Value, contentString);
                 sectionContent = sectionContent.Replace(match.Value, contentString);
+                sectionContent = sectionContent.Replace(ContentTemplatePlaceholder.PKLoopCount.Replace("{0}", loopIndex.ToString()), colIndex.ToString());
+                loopIndex++;
             }
 
             return sectionContent;
@@ -746,24 +760,31 @@
             string matchString = string.Empty;
             string contentString = string.Empty;
             string tmpString = string.Empty;
+            int colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
+            int loopIndex = 1;
 
             foreach (Match match in matchCollection)
             {
                 contentString = string.Empty;
                 matchString = match.Value;
                 matchString = RemovePlaceholder(ContentTemplatePlaceholder.FKLoopSection, matchString);
+                colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
 
                 foreach (ColumnInfo columnInfo in tableInfo.FKList)
                 {
+                    columnInfo.LoopIndex = colIndex;
                     tmpString = ReplaceFKContentPlaceholder(matchString, columnInfo);
                     ReplaceColumnIFSectionContent(tmpString, columnInfo, out tmpString);
                     tmpString = ReplacePKContentPlaceholder(tmpString, columnInfo.FKColumn);
 
                     contentString += tmpString;
+                    colIndex++;
                 }
 
                 contentString = ReplaceParamForPlaceholder(match.Value, contentString);
                 sectionContent = sectionContent.Replace(match.Value, contentString);
+                sectionContent = sectionContent.Replace(ContentTemplatePlaceholder.FKLoopCount.Replace("{0}", loopIndex.ToString()), colIndex.ToString());
+                loopIndex++;
             }
 
             return sectionContent;
@@ -783,15 +804,19 @@
             string matchString = string.Empty;
             string contentString = string.Empty;
             string tmpString = string.Empty;
+            int colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
+            int loopIndex = 1;
 
             foreach (Match match in matchCollection)
             {
                 contentString = string.Empty;
                 matchString = match.Value;
                 matchString = RemovePlaceholder(ContentTemplatePlaceholder.RKLoopSection, matchString);
+                colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
 
                 foreach (ColumnInfo columnInfo in tableInfo.RKList)
                 {
+                    columnInfo.LoopIndex = colIndex;
                     tmpString = ReplaceRKContentPlaceholder(matchString, columnInfo);
                     ReplaceColumnIFSectionContent(tmpString, columnInfo, out tmpString);
 
@@ -802,10 +827,13 @@
 
                     tmpString = ReplaceFKContentPlaceholder(tmpString, columnInfo);
                     contentString += tmpString;
+                    colIndex++;
                 }
 
                 contentString = ReplaceParamForPlaceholder(match.Value, contentString);
                 sectionContent = sectionContent.Replace(match.Value, contentString);
+                sectionContent = sectionContent.Replace(ContentTemplatePlaceholder.RKLoopCount.Replace("{0}", loopIndex.ToString()), colIndex.ToString());
+                loopIndex++;
             }
 
             return sectionContent;
@@ -825,12 +853,15 @@
             string matchString = string.Empty;
             string contentString = string.Empty;
             string tmpString = string.Empty;
+            int colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
+            int loopIndex = 1;
 
             foreach (Match match in matchCollection)
             {
                 contentString = string.Empty;
                 matchString = match.Value;
                 matchString = RemovePlaceholder(ContentTemplatePlaceholder.ColumnLoopSection, matchString);
+                colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
 
                 foreach (ColumnInfo columnInfo in tableInfo.ColumnList)
                 {
@@ -839,13 +870,17 @@
                         continue;
                     }
 
+                    columnInfo.LoopIndex = colIndex;
                     tmpString = ReplaceColumnContentPlaceholder(matchString, columnInfo);
                     ReplaceColumnIFSectionContent(tmpString, columnInfo, out tmpString);
                     contentString += tmpString;
+                    colIndex++;
                 }
 
                 contentString = ReplaceParamForPlaceholder(match.Value, contentString);
                 sectionContent = sectionContent.Replace(match.Value, contentString);
+                sectionContent = sectionContent.Replace(ContentTemplatePlaceholder.ColumnLoopCount.Replace("{0}", loopIndex.ToString()), colIndex.ToString());
+                loopIndex++;
             }
 
             return sectionContent;
@@ -907,12 +942,15 @@
             string tmpResultString = string.Empty;
             int count = 0;
             int hasContentCount = 0;
+            int colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
+            int loopIndex = 1;
 
             foreach (Match match in matchCollection)
             {
                 contentString = string.Empty;
                 matchString = match.Value;
                 matchString = RemovePlaceholder(ContentTemplatePlaceholder.ColumnLoopIFSection, matchString);
+                colIndex = tableInfo.CurrProjectInfo.CodeInfoGetter.ArrayStartIndex;
 
                 foreach (ColumnInfo columnInfo in tableInfo.ColumnList)
                 {
@@ -921,10 +959,12 @@
                         continue;
                     }
 
+                    columnInfo.LoopIndex = colIndex;
                     tmpString = ReplaceColumnContentPlaceholder(matchString, columnInfo);
                     count += ReplaceColumnIFSectionContent(tmpString, columnInfo, out tmpResultString);
                     tmpResultString = ReplaceFunctionSectionContent(tmpResultString);
                     contentString += tmpResultString;
+                    colIndex++;
                 }
                 
                 if (count == 0)
@@ -937,6 +977,9 @@
                     resultString = resultString.Replace(match.Value, contentString);
                     hasContentCount++;
                 }
+
+                //resultString = resultString.Replace(string.Format(ContentTemplatePlaceholder.ColumnLoopCount, loopIndex.ToString()), colIndex.ToString());
+                //loopIndex++;
             }
 
             return hasContentCount;
@@ -1084,7 +1127,7 @@
                 }
                 else
                 {
-                    isExist = (tableInfo.ColumnList.Count(c => c.NameLow.Equals(paramArr[1].ToLower())) > 0);
+                    isExist = (tableInfo.ColumnList.Count(c => c.PropertyNameLow.Equals(paramArr[1].ToLower())) > 0);
                 }
 
                 matchString = RemovePlaceholder(ContentTemplatePlaceholder.ColumnExistIFSection, matchString);
@@ -1246,7 +1289,7 @@
                         continue;
                     }
 
-                    if (columnInfo.NameLow.Equals(tmpParam))
+                    if (columnInfo.PropertyNameLow.Equals(tmpParam))
                     {
                         isIgnore = true;
                         continue;
@@ -1317,7 +1360,7 @@
                         continue;
                     }
 
-                    if (tableInfo.NameLow.Equals(tmpParam))
+                    if (tableInfo.ClassNameLow.Equals(tmpParam))
                     {
                         isIgnore = true;
                         continue;
@@ -1438,9 +1481,10 @@
         private static string ReplaceTableFFPlaceholder(string ffPath, TableInfo tableInfo)
         {
             string targetFolderPath = ffPath.Replace(FolderFileTemplatePlaceholder.TableName, tableInfo.Name)
-                                            .Replace(FolderFileTemplatePlaceholder.TableNameLow, tableInfo.NameLow)
-                                            .Replace(FolderFileTemplatePlaceholder.TableNameUp, tableInfo.NameUp)
-                                            .Replace(FolderFileTemplatePlaceholder.TableNameLowFirst, tableInfo.NameLowFirst)
+                                            .Replace(FolderFileTemplatePlaceholder.ClassName, tableInfo.ClassName)
+                                            .Replace(FolderFileTemplatePlaceholder.ClassNameLow, tableInfo.ClassNameLow)
+                                            .Replace(FolderFileTemplatePlaceholder.ClassNameUp, tableInfo.ClassNameUp)
+                                            .Replace(FolderFileTemplatePlaceholder.ClassNameLowFirst, tableInfo.ClassNameLowFirst)
                                             .Replace(FolderFileTemplatePlaceholder.TableLoop, string.Empty);
 
             return targetFolderPath;
@@ -1460,32 +1504,8 @@
                                    .Replace(ContentTemplatePlaceholder.ProjectNameLowFirst, projectInfo.NameLowFirst)
                                    .Replace(ContentTemplatePlaceholder.ProjectNamespace, projectInfo.Namespace)
                                    .Replace(ContentTemplatePlaceholder.ProjectDisplayName, projectInfo.DisplayName)
-                                   .Replace(ContentTemplatePlaceholder.ProjectReference, projectInfo.ReferenceRootFolder);
-
-            Regex regex = new Regex(ContentTemplatePlaceholder.ProjectGUID.Replace("}}", @"\|([0-9]+)\}\}").Replace("{{", @"\{\{"));
-            MatchCollection matchCollection = regex.Matches(result);
-            string[] paramArr = null;
-            string param = string.Empty;
-            int guidIndex = 0;
-
-            foreach (Match match in matchCollection)
-            {
-                paramArr = match.Value.Replace("{{", "").Replace("}}", "").Split('|');
-                
-                if(paramArr.Length < 2)
-                {
-                    continue;
-                }
-
-                param = paramArr[1];
-                
-                if(!int.TryParse(param, out guidIndex))
-                {
-                    continue;
-                }
-
-                result = result.Replace(match.Value, projectInfo.GetProjectGUID(guidIndex));
-            }
+                                   .Replace(ContentTemplatePlaceholder.ProjectReference, projectInfo.ReferenceRootFolder)
+                                   .Replace(ContentTemplatePlaceholder.TableCount, projectInfo.GenTableInfoList.Count.ToString());
 
             return result;
         }
@@ -1499,10 +1519,13 @@
         private static string ReplaceTableContentPlaceholder(string content, TableInfo tableInfo)
         {
             string result = content.Replace(ContentTemplatePlaceholder.TableName, tableInfo.Name)
-                                   .Replace(ContentTemplatePlaceholder.TableNameLow, tableInfo.NameLow)
-                                   .Replace(ContentTemplatePlaceholder.TableNameUp, tableInfo.NameUp)
-                                   .Replace(ContentTemplatePlaceholder.TableNameLowFirst, tableInfo.NameLowFirst)
-                                   .Replace(ContentTemplatePlaceholder.TableComment, tableInfo.Comment);
+                                   .Replace(ContentTemplatePlaceholder.ClassName, tableInfo.ClassName)
+                                   .Replace(ContentTemplatePlaceholder.ClassNameLow, tableInfo.ClassNameLow)
+                                   .Replace(ContentTemplatePlaceholder.ClassNameUp, tableInfo.ClassNameUp)
+                                   .Replace(ContentTemplatePlaceholder.ClassNameLowFirst, tableInfo.ClassNameLowFirst)
+                                   .Replace(ContentTemplatePlaceholder.TableComment, tableInfo.Comment)
+                                   .Replace(ContentTemplatePlaceholder.TableLoopIndex, tableInfo.LoopIndex.ToString())
+                                   .Replace(ContentTemplatePlaceholder.ColumnCount, tableInfo.ColumnList.Count.ToString());
 
             return result;
         }
@@ -1516,9 +1539,10 @@
         private static string ReplaceColumnContentPlaceholder(string content, ColumnInfo columnInfo)
         {
             string result = content.Replace(ContentTemplatePlaceholder.ColumnName, columnInfo.Name)
-                                   .Replace(ContentTemplatePlaceholder.ColumnNameLow, columnInfo.NameLow)
-                                   .Replace(ContentTemplatePlaceholder.ColumnNameUp, columnInfo.NameUp)
-                                   .Replace(ContentTemplatePlaceholder.ColumnNameLowFirst, columnInfo.NameLowFirst)
+                                   .Replace(ContentTemplatePlaceholder.PropertyName, columnInfo.PropertyName)
+                                   .Replace(ContentTemplatePlaceholder.PropertyNameLow, columnInfo.PropertyNameLow)
+                                   .Replace(ContentTemplatePlaceholder.PropertyNameUp, columnInfo.PropertyNameUp)
+                                   .Replace(ContentTemplatePlaceholder.PropertyNameLowFirst, columnInfo.PropertyNameLowFirst)
                                    .Replace(ContentTemplatePlaceholder.ColumnComment, columnInfo.Comment)
                                    .Replace(ContentTemplatePlaceholder.ColumnPrecision, columnInfo.Precision.ToString())
                                    .Replace(ContentTemplatePlaceholder.ColumnScale, columnInfo.Scale.ToString())
@@ -1530,7 +1554,8 @@
                                    .Replace(ContentTemplatePlaceholder.ColumnMin, columnInfo.MinValue)
                                    .Replace(ContentTemplatePlaceholder.ColumnFKName, columnInfo.FKName)
                                    .Replace(ContentTemplatePlaceholder.ColumnId, columnInfo.ColId.ToString())
-                                   .Replace(ContentTemplatePlaceholder.ColumnDefaultValue, columnInfo.IsNullable && string.IsNullOrEmpty(columnInfo.DefaultValue) ? "null" : columnInfo.CurrTable.CurrProjectInfo.CodeInfoGetter.GetDefaultValueString(columnInfo.DefaultValue, columnInfo.DbType));
+                                   .Replace(ContentTemplatePlaceholder.ColumnLoopIndex, columnInfo.LoopIndex.ToString())
+                                   .Replace(ContentTemplatePlaceholder.ColumnDefaultValue, columnInfo.CurrTable.CurrProjectInfo.CodeInfoGetter.GetDefaultValueString(columnInfo.DefaultValue, columnInfo.DbType));
 
             Regex regex = null;
             MatchCollection matchCollection = null; 

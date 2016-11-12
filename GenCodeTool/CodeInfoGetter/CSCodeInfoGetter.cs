@@ -25,6 +25,17 @@
             get { return "CS Getter"; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ArrayStartIndex
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -97,7 +108,7 @@
                 case DbType.AnsiStringFixedLength:
                 case DbType.String:
                 case DbType.StringFixedLength:
-                    defaultString = string.IsNullOrEmpty(defaultString) ? "string.Empty" : "\"" + defaultString + "\"";
+                    defaultString = string.IsNullOrEmpty(defaultString) ? "null" : "\"" + defaultString + "\"";
                     break;
                 case DbType.Int16:
                 case DbType.Int32:

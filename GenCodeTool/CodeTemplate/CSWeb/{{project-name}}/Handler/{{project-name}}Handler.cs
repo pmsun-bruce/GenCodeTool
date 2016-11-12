@@ -69,20 +69,20 @@ namespace {{project:namespace}}.Handler
         /// <summary>
         /// {{table:comment}}表的数据操作类
         /// </summary>
-        private static I{{table:name}}Dal {{table:lfname}}Dal;
+        private static I{{table:cname}}Dal {{table:lfcname}}Dal;
         /// <summary>
         /// {{table:comment}}表的数据操作类
         /// </summary>
-        private static I{{table:name}}Dal {{table:name}}Dal
+        private static I{{table:cname}}Dal {{table:cname}}Dal
         {
             get
             {
-                if ({{table:lfname}}Dal == null)
+                if ({{table:lfcname}}Dal == null)
                 {
-                    {{table:lfname}}Dal = DalManager.DalFactory.Create{{table:name}}Dal();
+                    {{table:lfcname}}Dal = DalManager.DalFactory.Create{{table:cname}}Dal();
                 }
 
-                return {{table:lfname}}Dal;
+                return {{table:lfcname}}Dal;
             }
         }
 		{{/loop:table}}
@@ -94,67 +94,67 @@ namespace {{project:namespace}}.Handler
 
         #endregion
 		{{loop:table}}
-        #region {{table:name}} Methods
+        #region {{table:cname}} Methods
 
         #region Validate Data{{if:section}}
-		{{if:loop:col|ignparam:pk,fk,rk,CreateTime,UpdateTime,CreaterId,UpdatorId|}}{{if:col:unique}}
+		{{if:loop:col|ignparam:pk,fk,rk,CreateTime,UpdateTime,CreaterId,UpdatorId,RVersion,Status|}}{{if:col:unique}}
         /// <summary>
         /// 检查是否有重复的{{col:comment}}
         /// </summary>
-        /// <param name="{{col:lfname}}">{{col:comment}}</param>
+        /// <param name="{{col:lfpname}}">{{col:comment}}</param>
         /// <returns>如存在返回False，不存在返回True</returns>
-        public static bool CheckSame{{table:name}}{{col:name}}({{col:codetype}} {{col:lfname}})
+        public static bool CheckSame{{table:cname}}{{col:pname}}({{col:codetype}} {{col:lfpname}})
         {
-            return CheckSame{{table:name}}{{col:name}}({{col:lfname}}, null, null);
+            return CheckSame{{table:cname}}{{col:pname}}({{col:lfpname}}, null, null);
         }
 
         /// <summary>
         /// 检查是否有重复的{{col:comment}}
         /// </summary>
-        /// <param name="{{col:lfname}}">{{col:comment}}</param>
+        /// <param name="{{col:lfpname}}">{{col:comment}}</param>
         /// <param name="tran">中间数据库事务对象</param>
         /// <returns>如存在返回False，不存在返回True</returns>
-        public static bool CheckSame{{table:name}}{{col:name}}({{col:codetype}} {{col:lfname}}, ICTransaction tran)
+        public static bool CheckSame{{table:cname}}{{col:pname}}({{col:codetype}} {{col:lfpname}}, ICTransaction tran)
         {
-            return CheckSame{{table:name}}{{col:name}}({{col:lfname}}, null, tran);
+            return CheckSame{{table:cname}}{{col:pname}}({{col:lfpname}}, null, tran);
         }
 
         /// <summary>
         /// 检查是否有重复的{{col:comment}}，排除指定键值的记录
         /// 修改时使用
         /// </summary>
-        /// <param name="{{col:lfname}}">{{col:comment}}</param>
-        /// <param name="{{pk:col:lfname}}">需要排除的键值</param>
+        /// <param name="{{col:lfpname}}">{{col:comment}}</param>
+        /// <param name="{{pk:col:lfpname}}">需要排除的键值</param>
         /// <returns>如存在返回False，不存在返回True</returns>
-        public static bool CheckSame{{table:name}}{{col:name}}({{col:codetype}} {{col:lfname}}, {{pk:col:codetype}} {{pk:col:lfname}})
+        public static bool CheckSame{{table:cname}}{{col:pname}}({{col:codetype}} {{col:lfpname}}, {{pk:col:codetype}} {{pk:col:lfpname}})
         {
-            return CheckSame{{table:name}}{{col:name}}({{col:lfname}}, {{pk:col:lfname}}, null);
+            return CheckSame{{table:cname}}{{col:pname}}({{col:lfpname}}, {{pk:col:lfpname}}, null);
         }
 
         /// <summary>
         /// 检查是否有重复的{{col:comment}}，排除指定键值的记录
         /// 修改时使用
         /// </summary>
-        /// <param name="{{col:lfname}}">{{col:comment}}</param>
-        /// <param name="{{pk:col:lfname}}">需要排除的键值</param>
+        /// <param name="{{col:lfpname}}">{{col:comment}}</param>
+        /// <param name="{{pk:col:lfpname}}">需要排除的键值</param>
         /// <param name="tran">中间数据库事务对象</param>
         /// <returns>如存在返回False，不存在返回True</returns>
-        public static bool CheckSame{{table:name}}{{col:name}}({{col:codetype}} {{col:lfname}}, {{pk:col:codetype}} {{pk:col:lfname}}, ICTransaction tran)
+        public static bool CheckSame{{table:cname}}{{col:pname}}({{col:codetype}} {{col:lfpname}}, {{pk:col:codetype}} {{pk:col:lfpname}}, ICTransaction tran)
         {
-            if (string.IsNullOrWhiteSpace({{col:lfname}}))
+            if (string.IsNullOrWhiteSpace({{col:lfpname}}))
             {
                 return false;
             }
 
-            {{table:name}}Searcher {{table:lfname}}Searcher = new {{table:name}}Searcher();
-            {{table:lfname}}Searcher.{{col:name}}.AddCondition(ConditionFactory.Equal({{col:lfname}}));
+            {{table:cname}}Searcher {{table:lfcname}}Searcher = new {{table:cname}}Searcher();
+            {{table:lfcname}}Searcher.{{col:pname}}.Equal({{col:lfpname}});
 
-            if (!string.IsNullOrWhiteSpace({{pk:col:lfname}}))
+            if (!string.IsNullOrWhiteSpace({{pk:col:lfpname}}))
             {
-                {{table:lfname}}Searcher.{{pk:col:name}}.AddCondition(ConditionFactory.NotEqual({{pk:col:lfname}}));
+                {{table:lfcname}}Searcher.{{pk:col:pname}}.NotEqual({{pk:col:lfpname}});
             }
 
-            long count = Count{{table:name}}({{table:lfname}}Searcher, tran);
+            long count = Count{{table:cname}}({{table:lfcname}}Searcher, tran);
 
             if (count > 0)
             {
@@ -167,34 +167,34 @@ namespace {{project:namespace}}.Handler
         /// <summary>
         /// {{table:comment}}数据验证
         /// </summary>
-        /// <param name="{{table:lfname}}">{{table:comment}}</param>
-        public static void Validate{{table:name}}Data({{table:name}} {{table:lfname}})
+        /// <param name="{{table:lfcname}}">{{table:comment}}</param>
+        public static void Validate{{table:cname}}Data({{table:cname}} {{table:lfcname}})
         {
-            Validate{{table:name}}Data({{table:lfname}}, null);
+            Validate{{table:cname}}Data({{table:lfcname}}, null);
         }
 
         /// <summary>
         /// {{table:comment}}数据验证
         /// </summary>
-        /// <param name="{{table:lfname}}">{{table:comment}}</param>
+        /// <param name="{{table:lfcname}}">{{table:comment}}</param>
         /// <param name="tran">中间数据库事务对象</param>
-        public static void Validate{{table:name}}Data({{table:name}} {{table:lfname}}, ICTransaction tran)
+        public static void Validate{{table:cname}}Data({{table:cname}} {{table:lfcname}}, ICTransaction tran)
         {
             Validator validator = new Validator();{{if:section}}
             {{if:loop:col|ignparam:pk,fk,rk,CreateTime,UpdateTime,CreaterId,UpdatorId|}}
             // {{col:comment}} Check{{if:col:required}}
-			validator.RuleList.Add(ValidateRuleFactory.Required({{col:tostring}}{{table:lfname}}.{{col:name}}{{/col:tostring}}, string.Format(ValidateMessageResource.Required, {{table:name}}Resource.{{col:name}})));{{/if:col:required}}{{if:col:max}}
-			validator.RuleList.Add(ValidateRuleFactory.Max({{col:tostring}}{{table:lfname}}.{{col:name}}{{/col:tostring}}, {{col:max}}, string.Format(ValidateMessageResource.Max, {{table:name}}Resource.{{col:name}}, {{col:max}})));
+			validator.RuleList.Add(ValidateRuleFactory.Required({{col:tostring}}{{table:lfcname}}.{{col:pname}}{{/col:tostring}}, string.Format(ValidateMessageResource.Required, {{table:cname}}Resource.{{col:pname}})));{{/if:col:required}}{{if:col:max}}
+			validator.RuleList.Add(ValidateRuleFactory.Max({{col:tostring}}{{table:lfcname}}.{{col:pname}}{{/col:tostring}}, {{if:col:number}}(double){{/if:col:number}}{{col:max}}, string.Format(ValidateMessageResource.Max, {{table:cname}}Resource.{{col:pname}}, {{col:max}})));
 			{{/if:col:max}}{{if:col:maxlen}}
-			validator.RuleList.Add(ValidateRuleFactory.MaxLen({{table:lfname}}.{{col:name}}, {{col:maxlen}}, string.Format(ValidateMessageResource.MaxLen, {{table:name}}Resource.{{col:name}}, {{col:maxlen}})));{{/if:col:maxlen}}
+			validator.RuleList.Add(ValidateRuleFactory.MaxLen({{table:lfcname}}.{{col:pname}}, {{col:maxlen}}, string.Format(ValidateMessageResource.MaxLen, {{table:cname}}Resource.{{col:pname}}, {{col:maxlen}})));{{/if:col:maxlen}}
 			{{if:col:unique}}
-			if(string.IsNullOrWhiteSpace({{table:lfname}}.{{pk:col:name}}))
+			if(string.IsNullOrWhiteSpace({{table:lfcname}}.{{pk:col:pname}}))
             {
-                validator.RuleList.Add(ValidateRuleFactory.Customized(CheckSame{{table:name}}{{col:name}}({{table:lfname}}.{{col:name}}, tran), string.Format(ValidateMessageResource.SameValue, {{table:name}}Resource.{{col:name}})));
+                validator.RuleList.Add(ValidateRuleFactory.Customized(CheckSame{{table:cname}}{{col:pname}}({{table:lfcname}}.{{col:pname}}, tran), string.Format(ValidateMessageResource.SameValue, {{table:cname}}Resource.{{col:pname}})));
             }
             else
             {
-                validator.RuleList.Add(ValidateRuleFactory.Customized(CheckSame{{table:name}}{{col:name}}({{table:lfname}}.{{col:name}}, {{table:lfname}}.{{pk:col:name}}, tran), string.Format(ValidateMessageResource.SameValue, {{table:name}}Resource.{{col:name}})));
+                validator.RuleList.Add(ValidateRuleFactory.Customized(CheckSame{{table:cname}}{{col:pname}}({{table:lfcname}}.{{col:pname}}, {{table:lfcname}}.{{pk:col:pname}}, tran), string.Format(ValidateMessageResource.SameValue, {{table:cname}}Resource.{{col:pname}})));
             }
             {{/if:col:unique}}{{/if:loop:col}}{{/if:section}}
             ValidResult vResult = validator.Valid();
@@ -210,24 +210,24 @@ namespace {{project:namespace}}.Handler
         /// <summary>
         /// 添加{{table:comment}}
         /// </summary>
-        /// <param name="{{table:lfname}}">{{table:comment}}对象</param>
-        public static void Add{{table:name}}({{table:name}} {{table:lfname}})
+        /// <param name="{{table:lfcname}}">{{table:comment}}对象</param>
+        public static void Add{{table:cname}}({{table:cname}} {{table:lfcname}})
         {
             ICTransaction tran = DalManager.DalFactory.BeginTransaction();
 
             try
             {
-                Add{{table:name}}({{table:lfname}}, tran);
+                Add{{table:cname}}({{table:lfcname}}, tran);
                 tran.Commit();
             }
             catch(ResponseException rex)
             {
-                tran.RollBack();
+                tran.Rollback();
                 throw new ResponseException(rex.Message, rex); 
             }
             catch(Exception ex)
             {
-                tran.RollBack();
+                tran.Rollback();
                 throw new Exception(ex.Message, ex);
             }
         }
@@ -235,38 +235,38 @@ namespace {{project:namespace}}.Handler
         /// <summary>
         /// 添加{{table:comment}}
         /// </summary>
-        /// <param name="{{table:lfname}}">{{table:comment}}对象</param>
+        /// <param name="{{table:lfcname}}">{{table:comment}}对象</param>
         /// <param name="tran">中间数据库事务对象</param>
-        public static void Add{{table:name}}({{table:name}} {{table:lfname}}, ICTransaction tran)
+        public static void Add{{table:cname}}({{table:cname}} {{table:lfcname}}, ICTransaction tran)
         {
             lock (lockKey)
             {
-                Validate{{table:name}}Data({{table:lfname}}, tran);
-                {{table:name}}Dal.Add({{table:lfname}}, tran);
+                Validate{{table:cname}}Data({{table:lfcname}}, tran);
+                {{table:cname}}Dal.Add({{table:lfcname}}, tran);
             }
         }
 
         /// <summary>
         /// 更新{{table:comment}}
         /// </summary>
-        /// <param name="{{table:lfname}}">{{table:comment}}对象</param>
-        public static void Update{{table:name}}({{table:name}} {{table:lfname}})
+        /// <param name="{{table:lfcname}}">{{table:comment}}对象</param>
+        public static void Update{{table:cname}}({{table:cname}} {{table:lfcname}})
         {
             ICTransaction tran = DalManager.DalFactory.BeginTransaction();
 
             try
             {
-                Update{{table:name}}({{table:lfname}}, tran);
+                Update{{table:cname}}({{table:lfcname}}, tran);
                 tran.Commit();
             }
             catch (ResponseException rex)
             {
-                tran.RollBack();
+                tran.Rollback();
                 throw new ResponseException(rex.ResultCode, rex.Message, rex);
             }
             catch (Exception ex)
             {
-                tran.RollBack();
+                tran.Rollback();
                 throw new Exception(ex.Message, ex);
             }
         }
@@ -274,38 +274,38 @@ namespace {{project:namespace}}.Handler
         /// <summary>
         /// 更新{{table:comment}}
         /// </summary>
-        /// <param name="{{table:lfname}}">{{table:comment}}对象</param>
+        /// <param name="{{table:lfcname}}">{{table:comment}}对象</param>
         /// <param name="tran">中间数据库事务对象</param>
-        public static void Update{{table:name}}({{table:name}} {{table:lfname}}, ICTransaction tran)
+        public static void Update{{table:cname}}({{table:cname}} {{table:lfcname}}, ICTransaction tran)
         {
             lock (lockKey)
             {
-                Validate{{table:name}}Data({{table:lfname}}, tran);
-                {{table:name}}Dal.Update({{table:lfname}}, tran);
+                Validate{{table:cname}}Data({{table:lfcname}}, tran);
+                {{table:cname}}Dal.Update({{table:lfcname}}, tran);
             }
         }
 
         /// <summary>
         /// 删除{{table:comment}}
         /// </summary>
-        /// <param name="{{pk:col:lfname}}">{{pk:col:comment}}</param>
-        public static void Delete{{table:name}}ByPK({{pk:col:codetype}} {{pk:col:lfname}})
+        /// <param name="{{pk:col:lfpname}}">{{pk:col:comment}}</param>
+        public static void Delete{{table:cname}}ByPK({{pk:col:codetype}} {{pk:col:lfpname}})
         {
             ICTransaction tran = DalManager.DalFactory.BeginTransaction();
 
             try
             {
-                Delete{{table:name}}ByPK({{pk:col:lfname}}, tran);
+                Delete{{table:cname}}ByPK({{pk:col:lfpname}}, tran);
                 tran.Commit();
             }
             catch (ResponseException rex)
             {
-                tran.RollBack();
+                tran.Rollback();
                 throw new ResponseException(rex.ResultCode, rex.Message, rex);
             }
             catch (Exception ex)
             {
-                tran.RollBack();
+                tran.Rollback();
                 throw new Exception(ex.Message, ex);
             }
         }
@@ -313,37 +313,37 @@ namespace {{project:namespace}}.Handler
         /// <summary>
         /// 删除{{table:comment}}
         /// </summary>
-        /// <param name="{{pk:col:lfname}}">{{pk:col:comment}}</param>
+        /// <param name="{{pk:col:lfpname}}">{{pk:col:comment}}</param>
         /// <param name="tran">中间数据库事务对象</param>
-        public static void Delete{{table:name}}ByPK({{pk:col:codetype}} {{pk:col:lfname}}, ICTransaction tran)
+        public static void Delete{{table:cname}}ByPK({{pk:col:codetype}} {{pk:col:lfpname}}, ICTransaction tran)
         {
             lock (lockKey)
             {
-                {{table:name}}Dal.Delete({{pk:col:lfname}}, tran);
+                {{table:cname}}Dal.Delete({{pk:col:lfpname}}, tran);
             }
         }
 
         /// <summary>
         /// 删除{{table:comment}}
         /// </summary>
-        /// <param name="{{table:lfname}}Searcher">{{table:comment}}查询对象</param>
-        public static void Delete{{table:name}}BySearcher({{table:name}}Searcher {{table:lfname}}Searcher)
+        /// <param name="{{table:lfcname}}Searcher">{{table:comment}}查询对象</param>
+        public static void Delete{{table:cname}}BySearcher({{table:cname}}Searcher {{table:lfcname}}Searcher)
         {
             ICTransaction tran = DalManager.DalFactory.BeginTransaction();
 
             try
             {
-                Delete{{table:name}}BySearcher({{table:lfname}}Searcher, tran);
+                Delete{{table:cname}}BySearcher({{table:lfcname}}Searcher, tran);
                 tran.Commit();
             }
             catch (ResponseException rex)
             {
-                tran.RollBack();
+                tran.Rollback();
                 throw new ResponseException(rex.ResultCode, rex.Message, rex);
             }
             catch (Exception ex)
             {
-                tran.RollBack();
+                tran.Rollback();
                 throw new Exception(ex.Message, ex);
             }
         }
@@ -351,44 +351,44 @@ namespace {{project:namespace}}.Handler
         /// <summary>
         /// 删除{{table:comment}}
         /// </summary>
-        /// <param name="{{table:lfname}}Searcher">{{table:comment}}查询对象</param>
+        /// <param name="{{table:lfcname}}Searcher">{{table:comment}}查询对象</param>
         /// <param name="tran">中间数据库事务对象</param>
-        public static void Delete{{table:name}}BySearcher({{table:name}}Searcher {{table:lfname}}Searcher, ICTransaction tran)
+        public static void Delete{{table:cname}}BySearcher({{table:cname}}Searcher {{table:lfcname}}Searcher, ICTransaction tran)
         {
             lock (lockKey)
             {
-                {{table:name}}Dal.Delete({{table:lfname}}Searcher, tran);
+                {{table:cname}}Dal.Delete({{table:lfcname}}Searcher, tran);
             }
         }
 
         /// <summary>
         /// 根据PK获得{{table:comment}}
         /// </summary>
-        /// <param name="{{pk:col:lfname}}">{{table:comment}}PK</param>
+        /// <param name="{{pk:col:lfpname}}">{{table:comment}}PK</param>
         /// <returns>返回{{table:comment}}对象，如未找到返回null</returns>
-        public static {{table:name}} Get{{table:name}}ByPK({{pk:col:codetype}} {{pk:col:lfname}})
+        public static {{table:cname}} Get{{table:cname}}ByPK({{pk:col:codetype}} {{pk:col:lfpname}})
         {
-            return Get{{table:name}}ByPK({{pk:col:lfname}}, null);
+            return Get{{table:cname}}ByPK({{pk:col:lfpname}}, null);
         }
 
         /// <summary>
         /// 根据PK获得{{table:comment}}
         /// </summary>
-        /// <param name="{{pk:col:lfname}}">{{table:comment}}PK</param>
+        /// <param name="{{pk:col:lfpname}}">{{table:comment}}PK</param>
         /// <param name="tran">数据库事务对象</param>
         /// <returns>返回资源类型对象，如未找到返回null</returns>
-        public static {{table:name}} Get{{table:name}}ByPK({{pk:col:codetype}} {{pk:col:lfname}}, ICTransaction tran)
+        public static {{table:cname}} Get{{table:cname}}ByPK({{pk:col:codetype}} {{pk:col:lfpname}}, ICTransaction tran)
         {
-            return {{table:name}}Dal.FindSingle({{pk:col:lfname}}, tran);
+            return {{table:cname}}Dal.FindSingle({{pk:col:lfpname}}, tran);
         }
 
         /// <summary>
         /// 获取所有{{table:comment}}的列表
         /// </summary>
         /// <returns>返回{{table:comment}}列表，如未找到则返回null</returns>
-        public static IList<{{table:name}}> Get{{table:name}}List()
+        public static IList<{{table:cname}}> Get{{table:cname}}List()
         {
-            return Get{{table:name}}List((ICTransaction)null);
+            return Get{{table:cname}}List((ICTransaction)null);
         }
 
         /// <summary>
@@ -396,64 +396,64 @@ namespace {{project:namespace}}.Handler
         /// </summary>
         /// <param name="tran">中间数据库事务对象</param>
         /// <returns>返回{{table:comment}}列表，如未找到则返回null</returns>
-        public static IList<{{table:name}}> Get{{table:name}}List(ICTransaction tran)
+        public static IList<{{table:cname}}> Get{{table:cname}}List(ICTransaction tran)
         {
-            {{table:name}}Searcher {{table:lfname}}Searcher = new {{table:name}}Searcher();
-            //{{table:lfname}}Searcher.DisplayName.SortOrder = SortOrder.Asc;
-            return Get{{table:name}}List({{table:lfname}}Searcher, tran);
+            {{table:cname}}Searcher {{table:lfcname}}Searcher = new {{table:cname}}Searcher();
+            //{{table:lfcname}}Searcher.DisplayName.SortOrder = SortOrder.Asc;
+            return Get{{table:cname}}List({{table:lfcname}}Searcher, tran);
         }
 
         /// <summary>
         /// 根据指定条件查找{{table:comment}}列表
         /// </summary>
-        /// <param name="{{table:lfname}}Searcher">{{table:comment}}查询对象</param>
+        /// <param name="{{table:lfcname}}Searcher">{{table:comment}}查询对象</param>
         /// <returns>返回{{table:comment}}列表，如未找到则返回null</returns>
-        public static IList<{{table:name}}> Get{{table:name}}List({{table:name}}Searcher {{table:lfname}}Searcher)
+        public static IList<{{table:cname}}> Get{{table:cname}}List({{table:cname}}Searcher {{table:lfcname}}Searcher)
         {
-            return Get{{table:name}}List({{table:lfname}}Searcher, (ICTransaction)null);
+            return Get{{table:cname}}List({{table:lfcname}}Searcher, (ICTransaction)null);
         }
 
         /// <summary>
         /// 根据指定条件查找{{table:comment}}列表
         /// </summary>
-        /// <param name="{{table:lfname}}Searcher">{{table:comment}}查询对象</param>
+        /// <param name="{{table:lfcname}}Searcher">{{table:comment}}查询对象</param>
         /// <param name="tran">中间数据库事务对象</param>
         /// <returns>返回{{table:comment}}列表，如未找到则返回null</returns>
-        public static IList<{{table:name}}> Get{{table:name}}List({{table:name}}Searcher {{table:lfname}}Searcher, ICTransaction tran)
+        public static IList<{{table:cname}}> Get{{table:cname}}List({{table:cname}}Searcher {{table:lfcname}}Searcher, ICTransaction tran)
         {
-            return {{table:name}}Dal.FindList({{table:lfname}}Searcher, tran);
+            return {{table:cname}}Dal.FindList({{table:lfcname}}Searcher, tran);
         }
 
         /// <summary>
         /// 根据指定条件查找{{table:comment}}列表
         /// </summary>
-        /// <param name="{{table:lfname}}Searcher">{{table:comment}}查询对象</param>
+        /// <param name="{{table:lfcname}}Searcher">{{table:comment}}查询对象</param>
         /// <param name="pager">分页对象</param>
         /// <returns>返回分页结果对象</returns>
-        public static PageList<{{table:name}}> Get{{table:name}}List({{table:name}}Searcher {{table:lfname}}Searcher, Pager pager)
+        public static PageList<{{table:cname}}> Get{{table:cname}}List({{table:cname}}Searcher {{table:lfcname}}Searcher, Pager pager)
         {
-            return Get{{table:name}}List({{table:lfname}}Searcher, pager, null);
+            return Get{{table:cname}}List({{table:lfcname}}Searcher, pager, null);
         }
 
         /// <summary>
         /// 根据指定条件查找{{table:comment}}列表
         /// </summary>
-        /// <param name="{{table:lfname}}Searcher">{{table:comment}}查询对象</param>
+        /// <param name="{{table:lfcname}}Searcher">{{table:comment}}查询对象</param>
         /// <param name="pager">分页对象</param>
         /// <param name="tran">中间数据库事务对象</param>
         /// <returns>返回分页结果对象</returns>
-        public static PageList<{{table:name}}> Get{{table:name}}List({{table:name}}Searcher {{table:lfname}}Searcher, Pager pager, ICTransaction tran)
+        public static PageList<{{table:cname}}> Get{{table:cname}}List({{table:cname}}Searcher {{table:lfcname}}Searcher, Pager pager, ICTransaction tran)
         {
-            return {{table:name}}Dal.FindList({{table:lfname}}Searcher, pager, tran);
+            return {{table:cname}}Dal.FindList({{table:lfcname}}Searcher, pager, tran);
         }
 
         /// <summary>
         /// 获取所有{{table:comment}}数量
         /// </summary>
         /// <returns>返回{{table:comment}}数量</returns>
-        public static long Count{{table:name}}()
+        public static long Count{{table:cname}}()
         {
-            return Count{{table:name}}((ICTransaction)null);
+            return Count{{table:cname}}((ICTransaction)null);
         }
 
         /// <summary>
@@ -461,31 +461,31 @@ namespace {{project:namespace}}.Handler
         /// </summary>
         /// <param name="tran">中间数据库事务对象</param>
         /// <returns>返回{{table:comment}}数量</returns>
-        public static long Count{{table:name}}(ICTransaction tran)
+        public static long Count{{table:cname}}(ICTransaction tran)
         {
-            {{table:name}}Searcher {{table:lfname}}Searcher = new {{table:name}}Searcher();
-            return Count{{table:name}}({{table:lfname}}Searcher, tran);
+            {{table:cname}}Searcher {{table:lfcname}}Searcher = new {{table:cname}}Searcher();
+            return Count{{table:cname}}({{table:lfcname}}Searcher, tran);
         }
 
         /// <summary>
         /// 获取指定条件的{{table:comment}}数量
         /// </summary>
-        /// <param name="{{table:lfname}}Searcher">{{table:comment}}查询对象</param>
+        /// <param name="{{table:lfcname}}Searcher">{{table:comment}}查询对象</param>
         /// <returns>返回{{table:comment}}数量</returns>
-        public static long Count{{table:name}}({{table:name}}Searcher {{table:lfname}}Searcher)
+        public static long Count{{table:cname}}({{table:cname}}Searcher {{table:lfcname}}Searcher)
         {
-            return Count{{table:name}}({{table:lfname}}Searcher, null);
+            return Count{{table:cname}}({{table:lfcname}}Searcher, null);
         }
 
         /// <summary>
         /// 获取指定条件的{{table:comment}}数量
         /// </summary>
-        /// <param name="{{table:lfname}}Searcher">{{table:comment}}查询对象</param>
+        /// <param name="{{table:lfcname}}Searcher">{{table:comment}}查询对象</param>
         /// <param name="tran">中间数据库事务对象</param>
         /// <returns>返回{{table:comment}}数量</returns>
-        public static long Count{{table:name}}({{table:name}}Searcher {{table:lfname}}Searcher, ICTransaction tran)
+        public static long Count{{table:cname}}({{table:cname}}Searcher {{table:lfcname}}Searcher, ICTransaction tran)
         {
-            return {{table:name}}Dal.Count({{table:lfname}}Searcher, tran);
+            return {{table:cname}}Dal.Count({{table:lfcname}}Searcher, tran);
         }
 		
         #endregion

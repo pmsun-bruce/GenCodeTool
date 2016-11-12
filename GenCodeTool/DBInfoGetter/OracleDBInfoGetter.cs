@@ -97,7 +97,7 @@
             colQuery.AppendLine(@"     AND ");
             colQuery.AppendLine(@"       con1.constraint_type != 'C') n ON (n.column_name = t.column_name and LOWER(col1.table_name)=LOWER(t.table_name)) ");
             colQuery.AppendLine(@"WHERE ");
-            colQuery.AppendLine(@"    LOWER(t.table_name)='" + tableInfo.NameLow + @"' ");
+            colQuery.AppendLine(@"    LOWER(t.table_name)='" + tableInfo.Name.ToLower() + @"' ");
             colQuery.AppendLine(@"  AND ");
             colQuery.AppendLine(@"    t.hidden_column='NO' ");
             colQuery.AppendLine(@"ORDER BY ");

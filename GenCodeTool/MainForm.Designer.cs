@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SettingPanel = new System.Windows.Forms.Panel();
             this.ChooseTargetFolderBtn = new System.Windows.Forms.Button();
             this.ChooseReferenceFolderBtn = new System.Windows.Forms.Button();
@@ -65,7 +70,23 @@
             this.StartGenBtn = new System.Windows.Forms.Button();
             this.TablePanel = new System.Windows.Forms.Panel();
             this.ColumnInfoGrid = new System.Windows.Forms.DataGridView();
+            this.ColumnInfoBSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ColumnTitlePanel = new System.Windows.Forms.Panel();
+            this.ColumnInfoLbl = new System.Windows.Forms.Label();
+            this.TableInfoGrid = new System.Windows.Forms.DataGridView();
+            this.TableInfoBSource = new System.Windows.Forms.BindingSource(this.components);
+            this.TableTitlePancel = new System.Windows.Forms.Panel();
+            this.TableInfoLbl = new System.Windows.Forms.Label();
+            this.ReferenceFbd = new System.Windows.Forms.FolderBrowserDialog();
+            this.GenTargetFbd = new System.Windows.Forms.FolderBrowserDialog();
+            this.isGenDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namespaceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isGenUIDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isPKDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -86,20 +107,6 @@
             this.isGenSearchResultDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isGenSearchConditionDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isGenInputDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnInfoBSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ColumnTitlePanel = new System.Windows.Forms.Panel();
-            this.ColumnInfoLbl = new System.Windows.Forms.Label();
-            this.TableInfoGrid = new System.Windows.Forms.DataGridView();
-            this.isGenDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namespaceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isGenUIDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.TableInfoBSource = new System.Windows.Forms.BindingSource(this.components);
-            this.TableTitlePancel = new System.Windows.Forms.Panel();
-            this.TableInfoLbl = new System.Windows.Forms.Label();
-            this.ReferenceFbd = new System.Windows.Forms.FolderBrowserDialog();
-            this.GenTargetFbd = new System.Windows.Forms.FolderBrowserDialog();
             this.SettingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CodeTemplateBSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GenSettingBSource)).BeginInit();
@@ -453,6 +460,7 @@
             this.ColumnInfoGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ColumnInfoGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn1,
+            this.PropertyName,
             this.commentDataGridViewTextBoxColumn1,
             this.colIdDataGridViewTextBoxColumn,
             this.isPKDataGridViewCheckBoxColumn,
@@ -481,6 +489,127 @@
             this.ColumnInfoGrid.Size = new System.Drawing.Size(649, 312);
             this.ColumnInfoGrid.TabIndex = 5;
             // 
+            // ColumnInfoBSource
+            // 
+            this.ColumnInfoBSource.DataSource = typeof(NFramework.GenCodeTool.Entity.ColumnInfo);
+            // 
+            // ColumnTitlePanel
+            // 
+            this.ColumnTitlePanel.Controls.Add(this.ColumnInfoLbl);
+            this.ColumnTitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ColumnTitlePanel.Location = new System.Drawing.Point(0, 255);
+            this.ColumnTitlePanel.Name = "ColumnTitlePanel";
+            this.ColumnTitlePanel.Size = new System.Drawing.Size(649, 25);
+            this.ColumnTitlePanel.TabIndex = 4;
+            // 
+            // ColumnInfoLbl
+            // 
+            this.ColumnInfoLbl.AutoSize = true;
+            this.ColumnInfoLbl.Location = new System.Drawing.Point(7, 6);
+            this.ColumnInfoLbl.Name = "ColumnInfoLbl";
+            this.ColumnInfoLbl.Size = new System.Drawing.Size(41, 12);
+            this.ColumnInfoLbl.TabIndex = 1;
+            this.ColumnInfoLbl.Text = "表字段";
+            // 
+            // TableInfoGrid
+            // 
+            this.TableInfoGrid.AllowUserToAddRows = false;
+            this.TableInfoGrid.AllowUserToDeleteRows = false;
+            this.TableInfoGrid.AutoGenerateColumns = false;
+            this.TableInfoGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TableInfoGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.isGenDataGridViewCheckBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.ClassName,
+            this.namespaceDataGridViewTextBoxColumn,
+            this.commentDataGridViewTextBoxColumn,
+            this.isGenUIDataGridViewCheckBoxColumn});
+            this.TableInfoGrid.DataSource = this.TableInfoBSource;
+            this.TableInfoGrid.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TableInfoGrid.Location = new System.Drawing.Point(0, 25);
+            this.TableInfoGrid.Name = "TableInfoGrid";
+            this.TableInfoGrid.RowTemplate.Height = 23;
+            this.TableInfoGrid.Size = new System.Drawing.Size(649, 230);
+            this.TableInfoGrid.TabIndex = 3;
+            this.TableInfoGrid.SelectionChanged += new System.EventHandler(this.TableInfoGrid_SelectionChanged);
+            // 
+            // TableInfoBSource
+            // 
+            this.TableInfoBSource.DataSource = typeof(NFramework.GenCodeTool.Entity.TableInfo);
+            // 
+            // TableTitlePancel
+            // 
+            this.TableTitlePancel.Controls.Add(this.TableInfoLbl);
+            this.TableTitlePancel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TableTitlePancel.Location = new System.Drawing.Point(0, 0);
+            this.TableTitlePancel.Name = "TableTitlePancel";
+            this.TableTitlePancel.Size = new System.Drawing.Size(649, 25);
+            this.TableTitlePancel.TabIndex = 2;
+            // 
+            // TableInfoLbl
+            // 
+            this.TableInfoLbl.AutoSize = true;
+            this.TableInfoLbl.Location = new System.Drawing.Point(7, 6);
+            this.TableInfoLbl.Name = "TableInfoLbl";
+            this.TableInfoLbl.Size = new System.Drawing.Size(41, 12);
+            this.TableInfoLbl.TabIndex = 0;
+            this.TableInfoLbl.Text = "所有表";
+            // 
+            // isGenDataGridViewCheckBoxColumn
+            // 
+            this.isGenDataGridViewCheckBoxColumn.DataPropertyName = "IsGen";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle2.NullValue = false;
+            this.isGenDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.isGenDataGridViewCheckBoxColumn.HeaderText = "选择生成";
+            this.isGenDataGridViewCheckBoxColumn.Name = "isGenDataGridViewCheckBoxColumn";
+            this.isGenDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.isGenDataGridViewCheckBoxColumn.Width = 70;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "表名";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // ClassName
+            // 
+            this.ClassName.DataPropertyName = "ClassName";
+            this.ClassName.HeaderText = "类名";
+            this.ClassName.Name = "ClassName";
+            // 
+            // namespaceDataGridViewTextBoxColumn
+            // 
+            this.namespaceDataGridViewTextBoxColumn.DataPropertyName = "Namespace";
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
+            this.namespaceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.namespaceDataGridViewTextBoxColumn.HeaderText = "命名空间";
+            this.namespaceDataGridViewTextBoxColumn.Name = "namespaceDataGridViewTextBoxColumn";
+            this.namespaceDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // commentDataGridViewTextBoxColumn
+            // 
+            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Blue;
+            this.commentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.commentDataGridViewTextBoxColumn.HeaderText = "备注";
+            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            this.commentDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // isGenUIDataGridViewCheckBoxColumn
+            // 
+            this.isGenUIDataGridViewCheckBoxColumn.DataPropertyName = "IsGenUI";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle5.NullValue = false;
+            this.isGenUIDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.isGenUIDataGridViewCheckBoxColumn.HeaderText = "是否生成界面";
+            this.isGenUIDataGridViewCheckBoxColumn.Name = "isGenUIDataGridViewCheckBoxColumn";
+            this.isGenUIDataGridViewCheckBoxColumn.Width = 90;
+            // 
             // nameDataGridViewTextBoxColumn1
             // 
             this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
@@ -490,9 +619,19 @@
             this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn1.Width = 150;
             // 
+            // PropertyName
+            // 
+            this.PropertyName.DataPropertyName = "PropertyName";
+            this.PropertyName.Frozen = true;
+            this.PropertyName.HeaderText = "属性名称";
+            this.PropertyName.Name = "PropertyName";
+            // 
             // commentDataGridViewTextBoxColumn1
             // 
             this.commentDataGridViewTextBoxColumn1.DataPropertyName = "Comment";
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            this.commentDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.commentDataGridViewTextBoxColumn1.Frozen = true;
             this.commentDataGridViewTextBoxColumn1.HeaderText = "备注";
             this.commentDataGridViewTextBoxColumn1.Name = "commentDataGridViewTextBoxColumn1";
             this.commentDataGridViewTextBoxColumn1.Width = 150;
@@ -633,108 +772,6 @@
             this.isGenInputDataGridViewCheckBoxColumn.Name = "isGenInputDataGridViewCheckBoxColumn";
             this.isGenInputDataGridViewCheckBoxColumn.Width = 150;
             // 
-            // ColumnInfoBSource
-            // 
-            this.ColumnInfoBSource.DataSource = typeof(NFramework.GenCodeTool.Entity.ColumnInfo);
-            // 
-            // ColumnTitlePanel
-            // 
-            this.ColumnTitlePanel.Controls.Add(this.ColumnInfoLbl);
-            this.ColumnTitlePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ColumnTitlePanel.Location = new System.Drawing.Point(0, 255);
-            this.ColumnTitlePanel.Name = "ColumnTitlePanel";
-            this.ColumnTitlePanel.Size = new System.Drawing.Size(649, 25);
-            this.ColumnTitlePanel.TabIndex = 4;
-            // 
-            // ColumnInfoLbl
-            // 
-            this.ColumnInfoLbl.AutoSize = true;
-            this.ColumnInfoLbl.Location = new System.Drawing.Point(7, 6);
-            this.ColumnInfoLbl.Name = "ColumnInfoLbl";
-            this.ColumnInfoLbl.Size = new System.Drawing.Size(41, 12);
-            this.ColumnInfoLbl.TabIndex = 1;
-            this.ColumnInfoLbl.Text = "表字段";
-            // 
-            // TableInfoGrid
-            // 
-            this.TableInfoGrid.AllowUserToAddRows = false;
-            this.TableInfoGrid.AllowUserToDeleteRows = false;
-            this.TableInfoGrid.AutoGenerateColumns = false;
-            this.TableInfoGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TableInfoGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.isGenDataGridViewCheckBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.namespaceDataGridViewTextBoxColumn,
-            this.commentDataGridViewTextBoxColumn,
-            this.isGenUIDataGridViewCheckBoxColumn});
-            this.TableInfoGrid.DataSource = this.TableInfoBSource;
-            this.TableInfoGrid.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TableInfoGrid.Location = new System.Drawing.Point(0, 25);
-            this.TableInfoGrid.Name = "TableInfoGrid";
-            this.TableInfoGrid.RowTemplate.Height = 23;
-            this.TableInfoGrid.Size = new System.Drawing.Size(649, 230);
-            this.TableInfoGrid.TabIndex = 3;
-            this.TableInfoGrid.SelectionChanged += new System.EventHandler(this.TableInfoGrid_SelectionChanged);
-            // 
-            // isGenDataGridViewCheckBoxColumn
-            // 
-            this.isGenDataGridViewCheckBoxColumn.DataPropertyName = "IsGen";
-            this.isGenDataGridViewCheckBoxColumn.HeaderText = "选择生成";
-            this.isGenDataGridViewCheckBoxColumn.Name = "isGenDataGridViewCheckBoxColumn";
-            this.isGenDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isGenDataGridViewCheckBoxColumn.Width = 70;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "表名";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // namespaceDataGridViewTextBoxColumn
-            // 
-            this.namespaceDataGridViewTextBoxColumn.DataPropertyName = "Namespace";
-            this.namespaceDataGridViewTextBoxColumn.HeaderText = "命名空间";
-            this.namespaceDataGridViewTextBoxColumn.Name = "namespaceDataGridViewTextBoxColumn";
-            this.namespaceDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // commentDataGridViewTextBoxColumn
-            // 
-            this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
-            this.commentDataGridViewTextBoxColumn.HeaderText = "备注";
-            this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
-            this.commentDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // isGenUIDataGridViewCheckBoxColumn
-            // 
-            this.isGenUIDataGridViewCheckBoxColumn.DataPropertyName = "IsGenUI";
-            this.isGenUIDataGridViewCheckBoxColumn.HeaderText = "是否生成界面";
-            this.isGenUIDataGridViewCheckBoxColumn.Name = "isGenUIDataGridViewCheckBoxColumn";
-            this.isGenUIDataGridViewCheckBoxColumn.Width = 90;
-            // 
-            // TableInfoBSource
-            // 
-            this.TableInfoBSource.DataSource = typeof(NFramework.GenCodeTool.Entity.TableInfo);
-            // 
-            // TableTitlePancel
-            // 
-            this.TableTitlePancel.Controls.Add(this.TableInfoLbl);
-            this.TableTitlePancel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TableTitlePancel.Location = new System.Drawing.Point(0, 0);
-            this.TableTitlePancel.Name = "TableTitlePancel";
-            this.TableTitlePancel.Size = new System.Drawing.Size(649, 25);
-            this.TableTitlePancel.TabIndex = 2;
-            // 
-            // TableInfoLbl
-            // 
-            this.TableInfoLbl.AutoSize = true;
-            this.TableInfoLbl.Location = new System.Drawing.Point(7, 6);
-            this.TableInfoLbl.Name = "TableInfoLbl";
-            this.TableInfoLbl.Size = new System.Drawing.Size(41, 12);
-            this.TableInfoLbl.TabIndex = 0;
-            this.TableInfoLbl.Text = "所有表";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -743,7 +780,6 @@
             this.Controls.Add(this.TablePanel);
             this.Controls.Add(this.SettingPanel);
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "代码生成";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -816,6 +852,7 @@
         private System.Windows.Forms.FolderBrowserDialog ReferenceFbd;
         private System.Windows.Forms.FolderBrowserDialog GenTargetFbd;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PropertyName;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isPKDataGridViewCheckBoxColumn;
@@ -838,6 +875,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isGenInputDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isGenDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClassName;
         private System.Windows.Forms.DataGridViewTextBoxColumn namespaceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isGenUIDataGridViewCheckBoxColumn;

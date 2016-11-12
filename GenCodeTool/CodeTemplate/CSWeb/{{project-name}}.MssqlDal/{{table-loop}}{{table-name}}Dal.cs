@@ -239,7 +239,7 @@
         public void Delete({{pk:col:codetype}} {{pk:col:lfname}}, ICTransaction tran)
         {
             {{table:name}}Searcher querySearcher = new {{table:name}}Searcher();
-            querySearcher.{{pk:col:name}}.AddCondition(ConditionFactory.Equal({{pk:col:lfname}}));
+            querySearcher.{{pk:col:name}}Equal({{pk:col:lfname}}));
             this.Delete(querySearcher, tran);
         }
 
@@ -335,7 +335,7 @@
         public {{table:name}} FindSingle({{pk:col:codetype}} {{pk:col:lfname}}, ICTransaction tran)
         {
             {{table:name}}Searcher querySearcher = new {{table:name}}Searcher();
-            querySearcher.{{pk:col:name}}.AddCondition(ConditionFactory.Equal({{pk:col:lfname}}));
+            querySearcher.{{pk:col:name}}Equal({{pk:col:lfname}}));
             IList<{{table:name}}> resultList = this.FindList(querySearcher, tran);
             return (resultList == null || resultList.Count == 0) ? null : resultList[0];
         }

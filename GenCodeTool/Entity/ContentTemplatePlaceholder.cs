@@ -45,9 +45,9 @@
         /// </summary>
         public const string ProjectReference = "{{project:reference}}";
         /// <summary>
-        /// 项目的唯一GUID
+        /// 
         /// </summary>
-        public const string ProjectGUID = "{{project:guid}}";
+        public const string TableCount = "{{project:tcount}}";
 
         #endregion
 
@@ -64,23 +64,39 @@
         /// <summary>
         /// 表名称占位符
         /// </summary>
-        public const string TableName = "{{table:name}}"; 
-        /// <summary>
-        /// 全大写表名称占位符
-        /// </summary>
-        public const string TableNameUp = "{{table:uname}}"; 
-        /// <summary>
-        /// 全小写表名称占位符
-        /// </summary>
-        public const string TableNameLow = "{{table:lname}}"; 
-        /// <summary>
-        /// 首字母小写表名称占位符
-        /// </summary>
-        public const string TableNameLowFirst = "{{table:lfname}}";
+        public const string TableName = "{{table:name}}";
         /// <summary>
         /// 表备注占位符
         /// </summary>
         public const string TableComment = "{{table:comment}}";
+        /// <summary>
+        /// 类名称
+        /// </summary>
+        public const string ClassName = "{{table:cname}}";
+        /// <summary>
+        /// 全大写表名称占位符
+        /// </summary>
+        public const string ClassNameUp = "{{table:ucname}}"; 
+        /// <summary>
+        /// 全小写表名称占位符
+        /// </summary>
+        public const string ClassNameLow = "{{table:lcname}}"; 
+        /// <summary>
+        /// 首字母小写表名称占位符
+        /// </summary>
+        public const string ClassNameLowFirst = "{{table:lfcname}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ColumnCount = "{{table:ccount}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string TableLoopIndex = "{{table:lindex}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string TableLoopCount = "{{table:lcount:{0}}}";
 
         #endregion
 
@@ -99,17 +115,21 @@
         /// </summary>
         public const string ColumnName = "{{col:name}}";
         /// <summary>
+        /// 字段名称占位符
+        /// </summary>
+        public const string PropertyName = "{{col:pname}}";
+        /// <summary>
         /// 全大写字段名称占位符
         /// </summary>
-        public const string ColumnNameUp = "{{col:uname}}";
+        public const string PropertyNameUp = "{{col:upname}}";
         /// <summary>
         /// 全小写字段名称占位符
         /// </summary>
-        public const string ColumnNameLow = "{{col:lname}}";
+        public const string PropertyNameLow = "{{col:lpname}}";
         /// <summary>
         /// 首字母小写字段名称占位符
         /// </summary>
-        public const string ColumnNameLowFirst = "{{col:lfname}}";
+        public const string PropertyNameLowFirst = "{{col:lfpname}}";
         /// <summary>
         /// 字段备注占位符
         /// </summary>
@@ -162,6 +182,14 @@
         /// 字段转字符串占位符
         /// </summary>
         public const string ColumnToString = "{{col:tostring}}{0}{{/col:tostring}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ColumnLoopIndex = "{{col:lindex}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ColumnLoopCount = "{{col:lcount:{0}}}";
 
         #endregion
 
@@ -180,17 +208,21 @@
         /// </summary>
         public const string PKName = "{{pk:col:name}}";
         /// <summary>
+        /// 主键字段名称占位符
+        /// </summary>
+        public const string PKPropertyName = "{{pk:col:pname}}";
+        /// <summary>
         /// 全小写主键字段名称占位符
         /// </summary>
-        public const string PKNameLow = "{{pk:col:lname}}";
+        public const string PKPropertyNameLow = "{{pk:col:lpname}}";
         /// <summary>
         /// 全大写主键字段名称占位符
         /// </summary>
-        public const string PKNameUp = "{{pk:col:uname}}";
+        public const string PKPropertyNameUp = "{{pk:col:upname}}";
         /// <summary>
         /// 首字母小写主键字段名称占位符
         /// </summary>
-        public const string PKNameLowFirst = "{{pk:col:lfname}}";
+        public const string PKPropertyNameLowFirst = "{{pk:col:lfpname}}";
         /// <summary>
         /// 主键字段备注占位符
         /// </summary>
@@ -239,6 +271,14 @@
         /// 主键值转字符串占位符
         /// </summary>
         public const string PKToString = "{{pk:col:tostring}}{0}{{/pk:col:tostring}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string PKLoopIndex = "{{pk:col:lindex}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string PKLoopCount = "{{pk:col:lcount:{0}}}";
 
         #endregion
 
@@ -257,17 +297,21 @@
         /// </summary>
         public const string FKTableName = "{{fk:table:name}}";
         /// <summary>
+        /// 外键表名称占位符
+        /// </summary>
+        public const string FKClassName = "{{fk:table:cname}}";
+        /// <summary>
         /// 全大写外键表名称占位符
         /// </summary>
-        public const string FKTableNameUp = "{{fk:table:uname}}";
+        public const string FKClassNameUp = "{{fk:table:ucname}}";
         /// <summary>
         /// 全小写外键表名称占位符
         /// </summary>
-        public const string FKTableNameLow = "{{fk:table:lname}}";
+        public const string FKClassNameLow = "{{fk:table:lcname}}";
         /// <summary>
         /// 首字母小写外键表名称占位符
         /// </summary>
-        public const string FKTableNameLowFirst = "{{fk:table:lfname}}";
+        public const string FKClassNameLowFirst = "{{fk:table:lfcname}}";
         /// <summary>
         /// 外键表备注占位符
         /// </summary>
@@ -277,17 +321,21 @@
         /// </summary>
         public const string FKName = "{{fk:col:name}}";
         /// <summary>
+        /// 外键字段名称占位符
+        /// </summary>
+        public const string FKPropertyName = "{{fk:col:pname}}";
+        /// <summary>
         /// 全小写外键字段名称占位符
         /// </summary>
-        public const string FKNameLow = "{{fk:col:lname}}";
+        public const string FKPropertyNameLow = "{{fk:col:lpname}}";
         /// <summary>
         /// 全大写外键字段名称占位符
         /// </summary>
-        public const string FKNameUp = "{{fk:col:uname}}";
+        public const string FKPropertyNameUp = "{{fk:col:upname}}";
         /// <summary>
         /// 首字母小写外键字段名称占位符
         /// </summary>
-        public const string FKNameLowFirst = "{{fk:col:lfname}}";
+        public const string FKPropertyNameLowFirst = "{{fk:col:lfpname}}";
         /// <summary>
         /// 外键字段备注占位符
         /// </summary>
@@ -339,19 +387,23 @@
         /// <summary>
         /// 外键关联的主表的主键字段名称占位符
         /// </summary>
-        public const string FKPKName = "{{fk:pk:col:name}}";
+        public const string FKPKName = "{{fk:pk:col:pname}}";
+        /// <summary>
+        /// 外键关联的主表的主键字段名称占位符
+        /// </summary>
+        public const string FKPKPropertyName = "{{fk:pk:col:pname}}";
         /// <summary>
         /// 全小写外键关联的主表的主键字段名称占位符
         /// </summary>
-        public const string FKPKNameLow = "{{fk:pk:col:lname}}";
+        public const string FKPKPropertyNameLow = "{{fk:pk:col:lpname}}";
         /// <summary>
         /// 全大写外键关联的主表的主键字段名称占位符
         /// </summary>
-        public const string FKPKNameUp = "{{fk:pk:col:uname}}";
+        public const string FKPKPropertyNameUp = "{{fk:pk:col:upname}}";
         /// <summary>
         /// 首字母小写外键关联的主表的主键字段名称占位符
         /// </summary>
-        public const string FKPKNameLowFirst = "{{fk:pk:col:lfname}}";
+        public const string FKPKPropertyNameLowFirst = "{{fk:pk:col:lfpname}}";
         /// <summary>
         /// 外键关联的主表的主键字段备注占位符
         /// </summary>
@@ -400,6 +452,14 @@
         /// 外键关联的主表的主键字段转字符串占位符
         /// </summary>
         public const string FKPKToString = "{{fk:pk:col:tostring}}{0}{{/fk:pk:col:tostring}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string FKLoopIndex = "{{fk:col:lindex}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string FKLoopCount = "{{fk:col:lcount:{0}}}";
 
         #endregion
 
@@ -418,17 +478,21 @@
         /// </summary>
         public const string RKTableName = "{{rk:table:name}}";
         /// <summary>
+        /// 关联字段所在表的表名称占位符
+        /// </summary>
+        public const string RKClassName = "{{rk:table:cname}}";
+        /// <summary>
         /// 全大写关联字段所在表的表名称占位符
         /// </summary>
-        public const string RKTableNameUp = "{{rk:table:uname}}";
+        public const string RKClassNameUp = "{{rk:table:ucname}}";
         /// <summary>
         /// 全小写关联字段所在表的表名称占位符
         /// </summary>
-        public const string RKTableNameLow = "{{rk:table:lname}}";
+        public const string RKClassNameLow = "{{rk:table:lcname}}";
         /// <summary>
         /// 首字母小写关联字段所在表的表名称占位符
         /// </summary>
-        public const string RKTableNameLowFirst = "{{rk:table:lfname}}";
+        public const string RKClassNameLowFirst = "{{rk:table:lfcname}}";
         /// <summary>
         /// 关联字段所在表的表备注占位符
         /// </summary>
@@ -438,17 +502,21 @@
         /// </summary>
         public const string RKName = "{{rk:col:name}}";
         /// <summary>
+        /// 关联字段名称占位符
+        /// </summary>
+        public const string RKPropertyName = "{{rk:col:pname}}";
+        /// <summary>
         /// 全小写关联字段名称占位符
         /// </summary>
-        public const string RKNameLow = "{{rk:col:lname}}";
+        public const string RKPropertyNameLow = "{{rk:col:lpname}}";
         /// <summary>
         /// 全大写关联字段名称占位符
         /// </summary>
-        public const string RKNameUp = "{{rk:col:uname}}";
+        public const string RKPropertyNameUp = "{{rk:col:upname}}";
         /// <summary>
         /// 首字母小写关联字段名称占位符
         /// </summary>
-        public const string RKNameLowFirst = "{{rk:col:lfname}}";
+        public const string RKPropertyNameLowFirst = "{{rk:col:lfpname}}";
         /// <summary>
         /// 关联字段备注占位符
         /// </summary>
@@ -502,17 +570,21 @@
         /// </summary>
         public const string RKPKName = "{{rk:pk:col:name}}";
         /// <summary>
+        /// 关联字段所在表的主键字段名称占位符
+        /// </summary>
+        public const string RKPKPropertyName = "{{rk:pk:col:pname}}";
+        /// <summary>
         /// 全小写关联字段所在表的主键字段名称占位符
         /// </summary>
-        public const string RKPKNameLow = "{{rk:pk:col:lname}}";
+        public const string RKPKPropertyNameLow = "{{rk:pk:col:lpname}}";
         /// <summary>
         /// 全大写关联字段所在表的主键字段名称占位符
         /// </summary>
-        public const string RKPKNameUp = "{{rk:pk:col:uname}}";
+        public const string RKPKPropertyNameUp = "{{rk:pk:col:upname}}";
         /// <summary>
         /// 首字母小写关联字段所在表的主键字段名称占位符
         /// </summary>
-        public const string RKPKNameLowFirst = "{{rk:pk:col:lfname}}";
+        public const string RKPKPropertyNameLowFirst = "{{rk:pk:col:lfpname}}";
         /// <summary>
         /// 关联字段所在表的主键字段备注占位符
         /// </summary>
@@ -561,6 +633,14 @@
         /// 关联字段所在表的主键字段转字符串占位符
         /// </summary>
         public const string RKPKToString = "{{rk:pk:col:tostring}}{0}{{/rk:pk:col:tostring}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string RKLoopIndex = "{{rk:col:lindex}}";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string RKLoopCount = "{{rk:col:lcount:{0}}}";
 
         #endregion
 

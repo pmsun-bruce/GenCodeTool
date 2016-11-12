@@ -26,70 +26,89 @@
             set;
         }
 
-        /// <summary>
-        /// 全小写字段名称
-        /// </summary>
-        private string nameLow;
-        /// <summary>
-        /// 全小写字段名称
-        /// </summary>
-        public string NameLow
+        private string propertyName;
+
+        public string PropertyName
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(nameLow) && !string.IsNullOrWhiteSpace(Name))
+                if(string.IsNullOrWhiteSpace(propertyName))
                 {
-                    nameLow = Name.ToLower();
+                    propertyName = Name;
                 }
 
-                return nameLow;
+                return propertyName;
+            }
+            set
+            {
+                propertyName = value;
+            }
+        }
+
+        /// <summary>
+        /// 全小写字段名称
+        /// </summary>
+        private string propertyNameLow;
+        /// <summary>
+        /// 全小写字段名称
+        /// </summary>
+        public string PropertyNameLow
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(propertyNameLow) && !string.IsNullOrWhiteSpace(PropertyName))
+                {
+                    propertyNameLow = PropertyName.ToLower();
+                }
+
+                return propertyNameLow;
             }
         }
 
         /// <summary>
         /// 全大写字段名称
         /// </summary>
-        private string nameUp;
+        private string propertyNameUp;
         /// <summary>
         /// 全大写字段名称
         /// </summary>
-        public string NameUp
+        public string PropertyNameUp
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(nameUp) && !string.IsNullOrWhiteSpace(Name))
+                if (string.IsNullOrWhiteSpace(propertyNameUp) && !string.IsNullOrWhiteSpace(PropertyName))
                 {
-                    nameUp = Name.ToUpper();
+                    propertyNameUp = PropertyName.ToUpper();
                 }
 
-                return nameUp;
+                return propertyNameUp;
             }
         }
 
         /// <summary>
         /// 首字母小写的字段名称
         /// </summary>
-        private string nameLowFirst;
+        private string propertyNameLowFirst;
         /// <summary>
         /// 首字母小写的字段名称
         /// </summary>
-        public string NameLowFirst
+        public string PropertyNameLowFirst
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(nameLowFirst) && !string.IsNullOrWhiteSpace(Name))
+                if (string.IsNullOrWhiteSpace(propertyNameLowFirst) && !string.IsNullOrWhiteSpace(PropertyName))
                 {
-                    if (Name.Length > 1)
+                    if (PropertyName.Length > 1)
                     {
-                        nameLowFirst = Name.Substring(0, 1).ToLower() + Name.Substring(1);
+                        propertyNameLowFirst = PropertyName.Substring(0, 1).ToLower() + PropertyName.Substring(1);
                     }
                     else
                     {
-                        nameLowFirst = Name.ToLower();
+                        propertyNameLowFirst = PropertyName.ToLower();
                     }
                 }
 
-                return nameLowFirst;
+                return propertyNameLowFirst;
             }
         }
 
@@ -115,6 +134,12 @@
         /// 字段ID，即字段的排序号
         /// </summary>
         public int ColId
+        {
+            get;
+            set;
+        }
+
+        public int LoopIndex
         {
             get;
             set;
@@ -459,31 +484,31 @@
                     switch (this.DbType)
                     {
                         case DbType.Int16:
-                            maxValue = short.MaxValue.ToString();
+                            maxValue = "short.MaxValue";
                             break;
                         case DbType.Int32:
-                            maxValue = int.MaxValue.ToString();
+                            maxValue = "int.MaxValue";
                             break;
                         case DbType.Int64:
-                            maxValue = long.MaxValue.ToString();
+                            maxValue = "long.MaxValue";
                             break;
                         case DbType.Decimal:
-                            maxValue = decimal.MaxValue.ToString();
+                            maxValue = "decimal.MaxValue";
                             break;
                         case DbType.Single:
-                            maxValue = float.MaxValue.ToString();
+                            maxValue = "float.MaxValue";
                             break;
                         case DbType.Double:
-                            maxValue = double.MaxValue.ToString();
+                            maxValue = "double.MaxValue";
                             break;
                         case DbType.DateTime:
-                            maxValue = DateTime.MaxValue.ToString("yyyy-MM-dd HH:mm:ss");
+                            maxValue = "DateTime.MaxValue";
                             break;
                         case DbType.Byte:
-                            maxValue = byte.MaxValue.ToString();
+                            maxValue = "byte.MaxValue";
                             break;
                         default:
-                            maxValue = string.Empty;
+                            maxValue = "string.Empty";
                             break;
                     }
                 }
@@ -512,31 +537,31 @@
                     switch (this.DbType)
                     {
                         case DbType.Int16:
-                            minValue = short.MinValue.ToString();
+                            minValue = "short.MinValue";
                             break;
                         case DbType.Int32:
-                            minValue = int.MinValue.ToString();
+                            minValue = "int.MinValue";
                             break;
                         case DbType.Int64:
-                            minValue = long.MinValue.ToString();
+                            minValue = "long.MinValue";
                             break;
                         case DbType.Decimal:
-                            minValue = decimal.MinValue.ToString();
+                            minValue = "decimal.MinValue";
                             break;
                         case DbType.Single:
-                            minValue = float.MinValue.ToString();
+                            minValue = "float.MinValue";
                             break;
                         case DbType.Double:
-                            minValue = double.MinValue.ToString();
+                            minValue = "double.MinValue";
                             break;
                         case DbType.DateTime:
-                            minValue = "1753-01-01";
+                            minValue = "Convert.ToDate(\"1753-01-01\")";
                             break;
                         case DbType.Byte:
-                            minValue = byte.MinValue.ToString();
+                            minValue = "byte.MinValue";
                             break;
                         default:
-                            minValue = string.Empty;
+                            minValue = "string.Empty";
                             break;
                     }
                 }

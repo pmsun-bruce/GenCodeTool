@@ -22,6 +22,6 @@ namespace {{project:namespace}}.IDal
         /// <summary>
         /// 创建{{table:comment}}数据操作类
         /// </summary>
-        I{{table:name}}Dal Create{{table:name}}Dal();{{/loop:table}}
+        I{{table:cname}}Dal Create{{table:cname}}Dal();{{/loop:table}}
     }
 }

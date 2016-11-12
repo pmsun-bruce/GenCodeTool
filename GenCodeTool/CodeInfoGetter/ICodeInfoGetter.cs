@@ -20,6 +20,10 @@
         /// </summary>
         string GetterName { get; }
         /// <summary>
+        /// 
+        /// </summary>
+        int ArrayStartIndex { get; }
+        /// <summary>
         /// 根据程序中的数据类型，包装指定内容的数据类型转换字符串。
         /// </summary>
         /// <param name="content">需要包装的内容</param>

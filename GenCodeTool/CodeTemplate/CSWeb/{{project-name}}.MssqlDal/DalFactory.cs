@@ -30,9 +30,9 @@
         /// 创建{{table:comment}}数据操作类
         /// </summary>
         /// <returns>返回{{table:comment}}数据操作类</returns>
-        public I{{table:name}}Dal Create{{table:name}}Dal()
+        public I{{table:cname}}Dal Create{{table:cname}}Dal()
         {
-            return new {{table:name}}Dal(this);
+            return new {{table:cname}}Dal(this);
         }
         {{/loop:table}}
         #endregion

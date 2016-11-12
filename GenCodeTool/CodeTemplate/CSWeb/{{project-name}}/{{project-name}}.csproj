@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{{{project:guid|1}}}</ProjectGuid>
+    <ProjectGuid>{FE4A8175-E694-4D52-B922-806E353FA078}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>{{project:namespace}}</RootNamespace>
@@ -89,17 +89,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>{{loop:table}}
-    <Compile Include="Entity\{{table:name}}.cs" />{{/loop:table}}
+    <Compile Include="Entity\{{table:cname}}.cs" />{{/loop:table}}
     <Compile Include="Handler\{{project:name}}Handler.cs" />
     <Compile Include="IDal\IDalFactory.cs" />
     <Compile Include="IDal\DalManager.cs" />{{loop:table}}
-    <Compile Include="IDal\I{{table:name}}Dal.cs" />{{/loop:table}}
+    <Compile Include="IDal\I{{table:cname}}Dal.cs" />{{/loop:table}}
     <Compile Include="Properties\AssemblyInfo.cs" />{{loop:table}}
-    <Compile Include="Searcher\{{table:name}}Searcher.cs" />{{/loop:table}}
+    <Compile Include="Searcher\{{table:cname}}Searcher.cs" />{{/loop:table}}
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\{{project:name}}.Globalization\{{project:name}}.Globalization.csproj">
-      <Project>{{{project:guid|2}}}</Project>
+      <Project>{1f41c2e1-6c40-4f71-b32e-c7ba9b587447}</Project>
       <Name>{{project:name}}.Globalization</Name>
     </ProjectReference>
   </ItemGroup>

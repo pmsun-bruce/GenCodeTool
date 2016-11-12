@@ -15,7 +15,7 @@
     /// </summary>
     [DataContract]
     [Serializable]
-    public class {{table:name}}
+    public class {{table:cname}}
     {
         #region Fields & Properties
         {{loop:col}}
@@ -23,7 +23,7 @@
         /// {{col:comment}}
         /// </summary>
         [DataMember]
-        public {{col:codetype}} {{col:name}}
+        public {{col:codetype}} {{col:pname}}
         {
             get;
             set;
@@ -34,7 +34,7 @@
         /// {{fk:table:comment}}
         /// </summary>
         [DataMember]
-        public {{fk:table:name}} Curr{{fk:table:name}}
+        public {{fk:table:cname}} Curr{{fk:table:cname}}
         {
             get;
             set;
@@ -45,7 +45,7 @@
         /// {{rk:table:comment}}
         /// </summary>
         [DataMember]
-        public IList<{{rk:table:name}}> {{rk:table:name}}List
+        public IList<{{rk:table:cname}}> {{rk:table:cname}}List
         {
             get;
             set;
@@ -58,18 +58,18 @@
         /// <summary>
         /// {{table:comment}}
         /// </summary>
-        public {{table:name}}()
+        public {{table:cname}}()
         {{{loop:col}}
-            this.{{col:name}} = {{col:defaultvalue}};{{/loop:col}}
+            this.{{col:pname}} = {{col:defaultvalue}};{{/loop:col}}
         }
         
         /// <summary>
         /// {{table:comment}}
         /// </summary>{{loop:col}}
-        /// <param name="{{col:lfname}}">{{col:comment}}</param>{{/loop:col}}
-        public {{table:name}}({{loop:col|rlast:,|rlast: }}{{col:codetype}} {{col:lfname}}, {{/loop:col}})
+        /// <param name="{{col:lfpname}}">{{col:comment}}</param>{{/loop:col}}
+        public {{table:cname}}({{loop:col|rlast:,|rlast: }}{{col:codetype}} {{col:lfpname}}, {{/loop:col}})
         {{{loop:col}}
-            this.{{col:name}} = {{col:lfname}};{{/loop:col}}
+            this.{{col:pname}} = {{col:lfpname}};{{/loop:col}}
         }
         
         #endregion
